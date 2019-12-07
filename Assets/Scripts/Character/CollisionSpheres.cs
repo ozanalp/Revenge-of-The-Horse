@@ -43,7 +43,7 @@ public class CollisionSpheres : MonoBehaviour
         }
         RepositionBackSpheres();
 
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < 28; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
             rightSpheres.Add(obj);
@@ -51,7 +51,7 @@ public class CollisionSpheres : MonoBehaviour
         }
         RepositionRightSpheres();
 
-        for (int i = 0; i < 24; i++)
+        for (int i = 0; i < 28; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
             leftSpheres.Add(obj);
@@ -257,24 +257,6 @@ public class CollisionSpheres : MonoBehaviour
         }
     }
 
-    public void RepositionBottomSpheres()
-    {
-        float bottom = owner.boxCollider.bounds.center.y - owner.boxCollider.bounds.extents.y;
-        float left = owner.boxCollider.bounds.center.x - owner.boxCollider.bounds.extents.x;
-        float right = owner.boxCollider.bounds.center.x + owner.boxCollider.bounds.extents.x;
-        float sizeX = owner.boxCollider.bounds.size.x;
-
-        bottomSpheres[0].transform.localPosition = new Vector3(left, bottom, 0) - transform.position;
-        bottomSpheres[1].transform.localPosition = new Vector3(right, bottom, 0) - transform.position;
-
-        float intervalHorizontal = (sizeX / 3);
-
-        for (int i = 2; i < bottomSpheres.Count; i++)
-        {
-            bottomSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 1)), bottom, 0) - transform.position;
-        }
-    }
-
     public void RepositionTopSpheres()
     {
         float top = owner.boxCollider.bounds.center.y + owner.boxCollider.bounds.extents.y;
@@ -282,14 +264,38 @@ public class CollisionSpheres : MonoBehaviour
         float right = owner.boxCollider.bounds.center.x + owner.boxCollider.bounds.extents.x;
         float sizeX = owner.boxCollider.bounds.size.x;
 
-        topSpheres[0].transform.localPosition = new Vector3(left, top, 0) - transform.position;
-        topSpheres[1].transform.localPosition = new Vector3(right, top, 0) - transform.position;
+        topSpheres[0].transform.localPosition = 
+            new Vector3(left - transform.position.x, top - transform.position.y, 0);
+        topSpheres[1].transform.localPosition = 
+            new Vector3(right - transform.position.x, top - transform.position.y, 0);
 
         float intervalHorizontal = (sizeX / 3);
 
         for (int i = 2; i < topSpheres.Count; i++)
         {
-            topSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 1)), top, 0) - transform.position;
+            topSpheres[i].transform.localPosition = 
+                new Vector3(left + (intervalHorizontal * (i - 1)) - transform.position.x, top - transform.position.y, 0);
+        }
+    }
+
+    public void RepositionBottomSpheres()
+    {
+        float bottom = owner.boxCollider.bounds.center.y - owner.boxCollider.bounds.extents.y;
+        float left = owner.boxCollider.bounds.center.x - owner.boxCollider.bounds.extents.x;
+        float right = owner.boxCollider.bounds.center.x + owner.boxCollider.bounds.extents.x;
+        float sizeX = owner.boxCollider.bounds.size.x;
+
+        bottomSpheres[0].transform.localPosition = 
+            new Vector3(left - transform.position.x, bottom - transform.position.y, 0);
+        bottomSpheres[1].transform.localPosition = 
+            new Vector3(right - transform.position.x, bottom - transform.position.y, 0);
+
+        float intervalHorizontal = (sizeX / 3);
+
+        for (int i = 2; i < bottomSpheres.Count; i++)
+        {
+            bottomSpheres[i].transform.localPosition = 
+                new Vector3(left + (intervalHorizontal * (i - 1)) - transform.position.x, bottom - transform.position.y, 0);
         }
     }
     #endregion
@@ -321,7 +327,5 @@ public class CollisionSpheres : MonoBehaviour
                 childs.Remove(child);
             }
         }
-
-        //Debug.Log(childs.Count);
     }
 }

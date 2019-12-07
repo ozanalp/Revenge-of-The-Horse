@@ -45,7 +45,7 @@ public class AIController : MonoBehaviour
             }
         }
 
-        control.aiProgress.pathIsBlocked = false;
+        //control.aiProgress.pathIsBlocked = false;
         AIRoutine = StartCoroutine(_InitAI());
     }
 

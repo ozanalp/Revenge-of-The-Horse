@@ -535,9 +535,21 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
-    public bool IsMovingUpward()
+    public bool IsMovingUp()
     {
-        if (transform.right.z > 0f)
+        if (moveUp)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }        
+    }
+
+    public bool IsMovingDown()
+    {
+        if (moveDown)
         {
             return true;
         }

@@ -40,10 +40,10 @@ public class RestartAI : StateData
                     characterState.characterControl.aiProgress.blockingCharacter = blockingChar;
                     break;
                 }
-                //else
-                //{
-                //    characterState.characterControl.aiProgress.blockingCharacter = null;
-                //}
+                else
+                {
+                    characterState.characterControl.aiProgress.blockingCharacter = null;
+                }
             }
         }
 
@@ -60,7 +60,6 @@ public class RestartAI : StateData
                     characterState.characterControl.moveLeft = false;
                     characterState.characterControl.moveUp = false;
                     characterState.characterControl.moveDown = false;
-                    //characterState.characterControl.aiProgress.pathIsBlocked = true;
                     characterState.characterControl.aiController.InitializeAI();
                 }
             }

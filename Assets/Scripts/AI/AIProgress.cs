@@ -5,7 +5,7 @@ public class AIProgress : MonoBehaviour
     public PathfindingAgent pathfindingAgent;
     private CharacterControl control;
     public CharacterControl blockingCharacter;
-    public bool pathIsBlocked;
+    //public bool pathIsBlocked;
     public bool doKickAttack;
 
     private void Awake()
@@ -113,7 +113,7 @@ public class AIProgress : MonoBehaviour
         }
     }
 
-    public bool TargetIsOnTheSameAxis()
+    public bool TargetIsOnTheSameZAxis()
     {
         if (Mathf.Abs(control.aiProgress.pathfindingAgent.target.transform.position.z -
             control.transform.position.z) <= .5f)
@@ -154,16 +154,17 @@ public class AIProgress : MonoBehaviour
                 return true;
             }
         }
-        else if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z > 0f)
+        
+        if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z > 0f)
         {
-            if (control.IsMovingUpward())
+            if (control.IsMovingUp())
             {
                 return true;
             }
         }
         else if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z < 0f)
         {
-            if (!control.IsMovingUpward())
+            if (control.IsMovingDown())
             {
                 return true;
             }

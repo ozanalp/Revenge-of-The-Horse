@@ -59,7 +59,7 @@ public class StartWalking : StateData
 
         characterState.characterControl.aiController.WalkStraightToStartSpehere();
 
-        if (characterState.characterControl.aiProgress.TargetIsOnTheSameAxis())
+        if (!characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis())
         {
             characterState.characterControl.aiController.WalkToTheAttackingPosition();
         }

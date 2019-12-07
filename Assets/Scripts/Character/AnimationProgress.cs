@@ -16,7 +16,8 @@ public class AnimationProgress : MonoBehaviour
 
     [Header("Movement")]
     private List<GameObject> spheresList;
-    private float dirBlock;
+    private float hrzBlock;
+    private float vrtBlock;
 
     [Header("AirControl")]
     public float momentum;
@@ -109,7 +110,7 @@ public class AnimationProgress : MonoBehaviour
         if (latestMoveForward.speed > 0)
         {
             spheresList = control.collisionSpheres.rightSpheres;
-            dirBlock = 0.3f;
+            hrzBlock = 0.3f;
 
             foreach (GameObject s in control.collisionSpheres.leftSpheres)
             {
@@ -122,7 +123,7 @@ public class AnimationProgress : MonoBehaviour
         else
         {
             spheresList = control.collisionSpheres.leftSpheres;
-            dirBlock = -0.3f;
+            hrzBlock = -0.3f;
 
             foreach (GameObject s in control.collisionSpheres.rightSpheres)
             {
@@ -133,43 +134,73 @@ public class AnimationProgress : MonoBehaviour
             }
         }
 
-        if (control.IsMovingUpward())
+        if (control.transform.rotation == Quaternion.Euler(0, 0, 0))
         {
-            spheresList = control.collisionSpheres.frontSpheres;
-            dirBlock = 0.3f;
-
-            foreach (GameObject s in control.collisionSpheres.backSpheres)
+            if (control.IsMovingUp())
             {
-                if (blockingObjs.ContainsKey(s))
+                spheresList = control.collisionSpheres.frontSpheres;
+                vrtBlock = 0.3f;
+
+                foreach (GameObject s in control.collisionSpheres.backSpheres)
                 {
-                    blockingObjs.Remove(s);
+                    if (blockingObjs.ContainsKey(s))
+                    {
+                        blockingObjs.Remove(s);
+                    }
+                }
+            }
+            else if (control.IsMovingDown())
+            {
+                spheresList = control.collisionSpheres.backSpheres;
+                vrtBlock = -0.3f;
+
+                foreach (GameObject s in control.collisionSpheres.frontSpheres)
+                {
+                    if (blockingObjs.ContainsKey(s))
+                    {
+                        blockingObjs.Remove(s);
+                    }
                 }
             }
         }
-        else
+        else if (control.transform.rotation == Quaternion.Euler(0, 180, 0))
         {
-            spheresList = control.collisionSpheres.backSpheres;
-            dirBlock = -0.3f;
-
-            foreach (GameObject s in control.collisionSpheres.frontSpheres)
+            if (control.IsMovingUp())
             {
-                if (blockingObjs.ContainsKey(s))
+                spheresList = control.collisionSpheres.backSpheres;
+                vrtBlock = -0.3f;
+
+                foreach (GameObject s in control.collisionSpheres.frontSpheres)
                 {
-                    blockingObjs.Remove(s);
+                    if (blockingObjs.ContainsKey(s))
+                    {
+                        blockingObjs.Remove(s);
+                    }
+                }
+            }
+            else if (control.IsMovingDown())
+            {
+                spheresList = control.collisionSpheres.frontSpheres;
+                vrtBlock = 0.3f;
+
+                foreach (GameObject s in control.collisionSpheres.backSpheres)
+                {
+                    if (blockingObjs.ContainsKey(s))
+                    {
+                        blockingObjs.Remove(s);
+                    }
                 }
             }
         }
 
         foreach (GameObject o in spheresList)
         {
-            RaycastHit hit;
-
-            if (control.IsMovingUpward())
+            if (control.moveRight || control.moveLeft)
             {
-                Debug.DrawRay(o.transform.position, control.transform.forward * dirBlock, Color.yellow);
+                Debug.DrawRay(o.transform.position, control.transform.right * hrzBlock, Color.red);
 
-                if (Physics.Raycast(o.transform.position, control.transform.forward * dirBlock,
-                    out hit, latestMoveForward.blockDistance))
+                if (Physics.Raycast(o.transform.position, control.transform.right * hrzBlock,
+                    out RaycastHit hit, latestMoveForward.blockDistance))
                 {
                     if (!IsPlayerAttackBox(hit.collider))
                     {
@@ -189,18 +220,21 @@ public class AnimationProgress : MonoBehaviour
                             blockingObjs.Remove(o);
                         }
                     }
-                    // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED REPEATED BELOW
-                    if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
-                    {
-                        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                    // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED, REPEATED BELOW
+                    //if (blockingObjs.Count != 0)
+                    //{
+                    //    if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
+                    //    {
+                    //        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                        if (currentDistance < 2f)
-                        {
-                            Vector3 dist = control.transform.position - hit.transform.position;
-                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right * dirBlock * 3.33f;
-                            break;
-                        }
-                    }
+                    //        if (currentDistance < 2f)
+                    //        {
+                    //            Vector3 dist = control.transform.position - hit.transform.position;
+                    //            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward * hrzBlock * 3.33f;
+                    //            break;
+                    //        }
+                    //    }
+                    //}
                 }
                 else
                 {
@@ -211,21 +245,46 @@ public class AnimationProgress : MonoBehaviour
                 }
             }
 
-            Debug.DrawRay(o.transform.position, control.transform.right * dirBlock, Color.yellow);
-
-            if (Physics.Raycast(o.transform.position, control.transform.right * dirBlock,
-                out hit, latestMoveForward.blockDistance))
+            if (control.IsMovingUp() || control.IsMovingDown())
             {
-                if (!IsPlayerAttackBox(hit.collider))
+                Debug.DrawRay(o.transform.position, control.transform.forward * vrtBlock, Color.yellow);
+
+                if (Physics.Raycast(o.transform.position, control.transform.forward * vrtBlock,
+                    out RaycastHit hit, latestMoveForward.blockDistance))
                 {
-                    if (blockingObjs.ContainsKey(o))
+                    if (!IsPlayerAttackBox(hit.collider))
                     {
-                        blockingObjs[o] = hit.collider.transform.root.gameObject;
+                        if (blockingObjs.ContainsKey(o))
+                        {
+                            blockingObjs[o] = hit.collider.transform.root.gameObject;
+                        }
+                        else
+                        {
+                            blockingObjs.Add(o, hit.collider.transform.root.gameObject);
+                        }
                     }
                     else
                     {
-                        blockingObjs.Add(o, hit.collider.transform.root.gameObject);
+                        if (blockingObjs.ContainsKey(o))
+                        {
+                            blockingObjs.Remove(o);
+                        }
                     }
+                    // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED REPEATED ABOVE
+                    //if (blockingObjs.Count != 0)
+                    //{
+                    //    if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
+                    //    {
+                    //        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+
+                    //        if (currentDistance < 2f)
+                    //        {
+                    //            Vector3 dist = control.transform.position - hit.transform.position;
+                    //            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right * hrzBlock * 3.33f;
+                    //            break;
+                    //        }
+                    //    }
+                    //}                    
                 }
                 else
                 {
@@ -234,28 +293,7 @@ public class AnimationProgress : MonoBehaviour
                         blockingObjs.Remove(o);
                     }
                 }
-                // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED, REPEATED ABOVE
-                if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
-                {
-                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
-
-                    if (currentDistance < 2f)
-                    {
-                        Vector3 dist = control.transform.position - hit.transform.position;
-                        control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward * dirBlock * 3.33f;
-                        break;
-                    }
-                }
             }
-            else
-            {
-                if (blockingObjs.ContainsKey(o))
-                {
-                    blockingObjs.Remove(o);
-                }
-            }
-
-
         }
     }
 
