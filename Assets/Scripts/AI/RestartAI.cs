@@ -60,7 +60,7 @@ public class RestartAI : StateData
                     characterState.characterControl.moveLeft = false;
                     characterState.characterControl.moveUp = false;
                     characterState.characterControl.moveDown = false;
-                    characterState.characterControl.aiController.InitializeAI();
+                    characterState.characterControl.aiController.InitializeAI();                    
                 }
             }
         }

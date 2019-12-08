@@ -174,31 +174,32 @@ public class MoveForward : StateData
             {
                 control.MoveForward(speed, speedGraph.Evaluate(stateInfo.normalizedTime));
             }
-            //else
-            //{
-            //    //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //    {
-            //        foreach (GameObject o in collisionSpheres.rightSpheres)
-            //        {
-            //            if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out RaycastHit hit, blockDistance))
-            //            {
-            //                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //                {
-            //                    if (control.isEnemy)
-            //                    {
-            //                        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+            else
+            {
+                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                {
+                    foreach (GameObject o in collisionSpheres.rightSpheres)
+                    {
+                        if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out RaycastHit hit, blockDistance))
+                        {
+                            if (control.isEnemy)
+                            {
+                                float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-            //                        if (currentDistance < 2.0f)
-            //                        {
-            //                            Vector3 dist = control.transform.position - hit.transform.position;
-            //                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                                if (currentDistance < 2.0f)
+                                {
+                                    while (IsBlocked(control, speed, stateInfo))
+                                    {
+                                        Vector3 dist = control.transform.position - hit.transform.position;
+                                        control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (control.moveLeft)
@@ -207,31 +208,32 @@ public class MoveForward : StateData
             {
                 control.MoveForward(speed, speedGraph.Evaluate(stateInfo.normalizedTime));
             }
-            //else
-            //{
-            //    //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //    {
-            //        foreach (GameObject o in collisionSpheres.leftSpheres)
-            //        {
-            //            if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.right), out RaycastHit hit, blockDistance))
-            //            {
-            //                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //                {
-            //                    if (control.isEnemy)
-            //                    {
-            //                        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+            else
+            {
+                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                {
+                    foreach (GameObject o in collisionSpheres.leftSpheres)
+                    {
+                        if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.right), out RaycastHit hit, blockDistance))
+                        {
+                            if (control.isEnemy)
+                            {
+                                float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-            //                        if (currentDistance < 2.0f)
-            //                        {
-            //                            Vector3 dist = control.transform.position - hit.transform.position;
-            //                            control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                                if (currentDistance < 2.0f)
+                                {
+                                    while (IsBlocked(control, speed, stateInfo))
+                                    {
+                                        Vector3 dist = control.transform.position - hit.transform.position;
+                                        control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         if (control.moveUp)
@@ -251,22 +253,22 @@ public class MoveForward : StateData
             {
                 if (control.transform.rotation == Quaternion.Euler(0, 0, 0))
                 {
-                    //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
                         foreach (GameObject o in collisionSpheres.frontSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                                if (control.isEnemy)
                                 {
-                                    if (control.isEnemy)
-                                    {
-                                        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                        if (currentDistance < 2f)
+                                    if (currentDistance < 2f)
+                                    {
+                                        while (IsBlocked(control, speed, stateInfo))
                                         {
                                             Vector3 dist = control.transform.position - hit.transform.position;
-                                            control.transform.position += Vector3.Magnitude(dist) * Time.deltaTime * Vector3.right;
+                                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
                                             break;
                                         }
                                     }
@@ -277,19 +279,19 @@ public class MoveForward : StateData
                 }
                 else if (control.transform.rotation == Quaternion.Euler(0, 180, 0))
                 {
-                    //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
                         foreach (GameObject o in collisionSpheres.backSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                                if (control.isEnemy)
                                 {
-                                    if (control.isEnemy)
-                                    {
-                                        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                        if (currentDistance < 2f)
+                                    if (currentDistance < 2f)
+                                    {
+                                        while (IsBlocked(control, speed, stateInfo))
                                         {
                                             Vector3 dist = control.transform.position - hit.transform.position;
                                             control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
@@ -317,63 +319,63 @@ public class MoveForward : StateData
                     control.transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 }
             }
-            //else
-            //{
-            //    if (control.transform.rotation == Quaternion.Euler(0, 0, 0))
-            //    {
-            //        //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //        {
-            //            foreach (GameObject o in collisionSpheres.backSpheres)
-            //            {
-            //                if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
-            //                {
-            //                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //                    {
-            //                        if (control.isEnemy)
-            //                        {
-            //                            float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+            else
+            {
+                if (control.transform.rotation == Quaternion.Euler(0, 0, 0))
+                {
+                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                    {
+                        foreach (GameObject o in collisionSpheres.backSpheres)
+                        {
+                            if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
+                            {
+                                if (control.isEnemy)
+                                {
+                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-            //                            if (currentDistance < 2f)
-            //                            {
-            //                                Vector3 dist = control.transform.position - hit.transform.position;
-            //                                control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
-            //                                break;
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //    else if (control.transform.rotation == Quaternion.Euler(0, 180, 0))
-            //    {
-            //        //foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //        {
-            //            foreach (GameObject o in collisionSpheres.frontSpheres)
-            //            {
-            //                if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
-            //                {
-            //                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
-            //                    {
-            //                        if (control.isEnemy)
-            //                        {
-            //                            float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    if (currentDistance < 2f)
+                                    {
+                                        while (IsBlocked(control, speed, stateInfo))
+                                        {
+                                            Vector3 dist = control.transform.position - hit.transform.position;
+                                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (control.transform.rotation == Quaternion.Euler(0, 180, 0))
+                {
+                    foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
+                    {
+                        foreach (GameObject o in collisionSpheres.frontSpheres)
+                        {
+                            if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
+                            {
+                                if (control.isEnemy)
+                                {
+                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-            //                            if (currentDistance < 2f)
-            //                            {
-            //                                Vector3 dist = control.transform.position - hit.transform.position;
-            //                                control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
-            //                                break;
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+                                    if (currentDistance < 2f)
+                                    {
+                                        while (IsBlocked(control, speed, stateInfo))
+                                        {
+                                            Vector3 dist = control.transform.position - hit.transform.position;
+                                            control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        
+
         CheckTurn(control);
     }
 

@@ -41,9 +41,22 @@ public class AIProgress : MonoBehaviour
             control.aiProgress.pathfindingAgent.target.transform.position);
     }
 
+    public bool EndSphereIsOnSameLevel()
+    {
+        if (Mathf.Abs(pathfindingAgent.endSphere.transform.position.y -
+            pathfindingAgent.startSphere.transform.position.y) > 0.01f)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
     public bool EndSphereIsHigher()
     {
-        if (EndSphereIsLevel())
+        if (EndSphereIsOnSameLevel())
         {
             return false;
         }
@@ -60,25 +73,12 @@ public class AIProgress : MonoBehaviour
 
     public bool EndSphereIsLower()
     {
-        if (EndSphereIsLevel())
+        if (EndSphereIsOnSameLevel())
         {
             return false;
         }
 
         if (pathfindingAgent.endSphere.transform.position.y - pathfindingAgent.startSphere.transform.position.y > 0f)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    public bool EndSphereIsLevel()
-    {
-        if (Mathf.Abs(pathfindingAgent.endSphere.transform.position.y -
-            pathfindingAgent.startSphere.transform.position.y) > 0.01f)
         {
             return false;
         }
@@ -147,7 +147,7 @@ public class AIProgress : MonoBehaviour
                 return true;
             }
         }
-        else if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).x < 0f)
+        else
         {
             if (!control.IsFacingForward())
             {
@@ -162,7 +162,7 @@ public class AIProgress : MonoBehaviour
                 return true;
             }
         }
-        else if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z < 0f)
+        else
         {
             if (control.IsMovingDown())
             {
@@ -171,5 +171,11 @@ public class AIProgress : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void RepositionDestination()
+    {
+        pathfindingAgent.startSphere.transform.position = pathfindingAgent.target.transform.position;
+        pathfindingAgent.endSphere.transform.position = pathfindingAgent.target.transform.position;
     }
 }

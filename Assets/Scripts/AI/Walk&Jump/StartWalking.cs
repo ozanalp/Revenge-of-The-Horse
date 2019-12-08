@@ -59,10 +59,10 @@ public class StartWalking : StateData
 
         characterState.characterControl.aiController.WalkStraightToStartSpehere();
 
-        if (!characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis())
-        {
-            characterState.characterControl.aiController.WalkToTheAttackingPosition();
-        }
+        //if (!characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis())
+        //{
+        //    characterState.characterControl.aiController.WalkToTheAttackingPosition();
+        //}
 
         if (characterState.characterControl.aiProgress.AIDistanceToEndSphere() < 4f)  //7
         {
@@ -72,15 +72,8 @@ public class StartWalking : StateData
             characterState.characterControl.moveUp = false;
             characterState.characterControl.moveDown = false;
         }
-        //else
-        //{
-        //    characterState.characterControl.aiController.WalkStraightToStartSpehere();
 
-        //    if (characterState.characterControl.aiProgress.TargetDistanceToEndSphere() > 5f)
-        //    {
-        //        characterState.characterControl.aiController.InitializeAI();
-        //    }
-        //}
+        characterState.characterControl.aiProgress.RepositionDestination();
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

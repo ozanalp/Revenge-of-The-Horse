@@ -107,7 +107,7 @@ public class AnimationProgress : MonoBehaviour
 
     private void CheckBlockingObjs()
     {
-        if (latestMoveForward.speed > 0)
+        if (control.moveRight)//(latestMoveForward.speed > 0)
         {
             spheresList = control.collisionSpheres.rightSpheres;
             hrzBlock = 0.3f;
@@ -120,7 +120,7 @@ public class AnimationProgress : MonoBehaviour
                 }
             }
         }
-        else
+        else if(control.moveLeft)
         {
             spheresList = control.collisionSpheres.leftSpheres;
             hrzBlock = -0.3f;
@@ -220,21 +220,6 @@ public class AnimationProgress : MonoBehaviour
                             blockingObjs.Remove(o);
                         }
                     }
-                    // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED, REPEATED BELOW
-                    //if (blockingObjs.Count != 0)
-                    //{
-                    //    if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
-                    //    {
-                    //        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
-
-                    //        if (currentDistance < 2f)
-                    //        {
-                    //            Vector3 dist = control.transform.position - hit.transform.position;
-                    //            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward * hrzBlock * 3.33f;
-                    //            break;
-                    //        }
-                    //    }
-                    //}
                 }
                 else
                 {
@@ -269,22 +254,7 @@ public class AnimationProgress : MonoBehaviour
                         {
                             blockingObjs.Remove(o);
                         }
-                    }
-                    // THIS PART IS MOVEMENT RELATED, SHALL BE REMOVED REPEATED ABOVE
-                    //if (blockingObjs.Count != 0)
-                    //{
-                    //    if (hit.collider.gameObject.GetComponent<CharacterControl>().isEnemy)
-                    //    {
-                    //        float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
-
-                    //        if (currentDistance < 2f)
-                    //        {
-                    //            Vector3 dist = control.transform.position - hit.transform.position;
-                    //            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right * hrzBlock * 3.33f;
-                    //            break;
-                    //        }
-                    //    }
-                    //}                    
+                    }                    
                 }
                 else
                 {
