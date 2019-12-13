@@ -56,10 +56,10 @@ public class RestartAI : StateData
                 {
                     characterState.characterControl.doubleSpeed = false;
                     characterState.characterControl.jump = false;
-                    characterState.characterControl.moveRight = false;
-                    characterState.characterControl.moveLeft = false;
-                    characterState.characterControl.moveUp = false;
-                    characterState.characterControl.moveDown = false;
+                    //characterState.characterControl.moveRight = false;
+                    //characterState.characterControl.moveLeft = false;
+                    //characterState.characterControl.moveUp = false;
+                    //characterState.characterControl.moveDown = false;
                     characterState.characterControl.aiController.InitializeAI();                    
                 }
             }

@@ -62,6 +62,11 @@ public class MoveForward : StateData
         {
             animator.SetBool(TransitionParameter.Move.ToString(), false);
         }
+        
+        if (control.moveRight || control.moveLeft || control.moveUp || control.moveDown)
+        {
+            animator.SetBool(TransitionParameter.Move.ToString(), true);
+        }
 
         if (control.moveRight && control.moveLeft || control.moveUp && control.moveDown)
         {
@@ -182,7 +187,7 @@ public class MoveForward : StateData
                     {
                         if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out RaycastHit hit, blockDistance))
                         {
-                            if (control.isEnemy)
+                            if (!control.GetComponent<ManualInput>().enabled)
                             {
                                 float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
@@ -216,7 +221,7 @@ public class MoveForward : StateData
                     {
                         if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.right), out RaycastHit hit, blockDistance))
                         {
-                            if (control.isEnemy)
+                            if (!control.GetComponent<ManualInput>().enabled)
                             {
                                 float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
@@ -259,18 +264,19 @@ public class MoveForward : StateData
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                if (control.isEnemy)
+                                if (!control.GetComponent<ManualInput>().enabled)
                                 {
-                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    //float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                    if (currentDistance < 2f)
+                                    //if (currentDistance < 2f)
                                     {
-                                        while (IsBlocked(control, speed, stateInfo))
-                                        {
-                                            Vector3 dist = control.transform.position - hit.transform.position;
-                                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
-                                            break;
-                                        }
+                                        Vector3 dist = control.transform.position - hit.transform.position;
+                                        //control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(dist) * 300 * Time.deltaTime);
+                                        //control.transform.Translate(Vector3.right * Time.deltaTime * .35f); //Vector3.Magnitude(dist));
+                                        control.transform.position += Time.deltaTime * Vector3.right * Vector3.Magnitude(dist);
+                                        //control.RIGID_BODY.MovePosition(control.transform.position + control.transform.right * Time.deltaTime * 30); //* Vector3.Magnitude(dist) * 60);
+                                        //control.RIGID_BODY.velocity = control.transform.right * Time.deltaTime * Vector3.Magnitude(dist) * 300;
+                                        break;
                                     }
                                 }
                             }
@@ -285,16 +291,17 @@ public class MoveForward : StateData
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                if (control.isEnemy)
+                                if (!control.GetComponent<ManualInput>().enabled)
                                 {
-                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    //float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                    if (currentDistance < 2f)
+                                    //if (currentDistance < 2f)
                                     {
-                                        while (IsBlocked(control, speed, stateInfo))
+                                        //while (IsBlocked(control, speed, stateInfo))
                                         {
                                             Vector3 dist = control.transform.position - hit.transform.position;
-                                            control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
+                                            //control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(dist) * -300 * Time.deltaTime);
+                                            control.transform.position -= Vector3.Magnitude(dist) * Time.deltaTime * Vector3.right;
                                             break;
                                         }
                                     }
@@ -329,16 +336,17 @@ public class MoveForward : StateData
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                if (control.isEnemy)
+                                if (!control.GetComponent<ManualInput>().enabled)
                                 {
-                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    //float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                    if (currentDistance < 2f)
+                                    //if (currentDistance < 2f)
                                     {
-                                        while (IsBlocked(control, speed, stateInfo))
+                                        //while (IsBlocked(control, speed, stateInfo))
                                         {
                                             Vector3 dist = control.transform.position - hit.transform.position;
-                                            control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
+                                            //control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(dist) * 300 * Time.deltaTime);
+                                            control.transform.position += Vector3.Magnitude(dist) * Time.deltaTime * Vector3.right;
                                             break;
                                         }
                                     }
@@ -355,16 +363,17 @@ public class MoveForward : StateData
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
                             {
-                                if (control.isEnemy)
+                                if (!control.GetComponent<ManualInput>().enabled)
                                 {
-                                    float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
+                                    //float currentDistance = Vector3.Distance(control.transform.position, hit.transform.position);
 
-                                    if (currentDistance < 2f)
+                                    //if (currentDistance < 2f)
                                     {
-                                        while (IsBlocked(control, speed, stateInfo))
+                                        //while (IsBlocked(control, speed, stateInfo))
                                         {
                                             Vector3 dist = control.transform.position - hit.transform.position;
-                                            control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.right;
+                                            control.transform.position -= Vector3.Magnitude(dist) * Time.deltaTime * Vector3.right;
+                                            //control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(dist) * -300 * Time.deltaTime);
                                             break;
                                         }
                                     }

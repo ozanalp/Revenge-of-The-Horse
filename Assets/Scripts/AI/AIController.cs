@@ -90,37 +90,40 @@ public class AIController : MonoBehaviour
         control.animator.SetBool("L_Punch", false);
 
         targetDir = control.aiProgress.pathfindingAgent.startSphere.transform.position - control.transform.position;
-        
-        if (targetDir.x > .65f)
-        {
-            control.moveRight = true;
-            control.moveLeft = false;
-        }
-        else if (targetDir.x < -.65f)
-        {
-            control.moveRight = false;
-            control.moveLeft = true;
-        }
-        else if (targetDir.x >= -0.64f && targetDir.x <= 0.64f)
-        {
-            control.moveRight = false;
-            control.moveLeft = false;
-        }
 
-        if (targetDir.z > 0)
+        if (control.aiProgress.blockingCharacter == null)
         {
-            control.moveUp = true;
-            control.moveDown = false;
-        }
-        else if (targetDir.z < 0)
-        {
-            control.moveUp = false;
-            control.moveDown = true;
-        }
-        else if (targetDir.z == 0)
-        {
-            control.moveUp = false;
-            control.moveDown = false;
+            if (targetDir.x > .65f)
+            {
+                control.moveRight = true;
+                control.moveLeft = false;
+            }
+            else if (targetDir.x < -.65f)
+            {
+                control.moveRight = false;
+                control.moveLeft = true;
+            }
+            else if (targetDir.x >= -0.64f && targetDir.x <= 0.64f)
+            {
+                control.moveRight = false;
+                control.moveLeft = false;
+            }
+
+            if (targetDir.z > 0)
+            {
+                control.moveUp = true;
+                control.moveDown = false;
+            }
+            else if (targetDir.z < 0)
+            {
+                control.moveUp = false;
+                control.moveDown = true;
+            }
+            else if (targetDir.z == 0)
+            {
+                control.moveUp = false;
+                control.moveDown = false;
+            }
         }
     }
 
@@ -128,20 +131,52 @@ public class AIController : MonoBehaviour
     {
         targetDir = control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position;
 
-        if (targetDir.z > .5f)
+        if (targetDir.z > .3f)
         {
             control.moveUp = true;
             control.moveDown = false;
         }
-        else if (targetDir.z < -.5f)
+        else if (targetDir.z < -.3f)
         {
             control.moveUp = false;
             control.moveDown = true;
         }
-        else if (targetDir.z >= -.49f && targetDir.z <= .49f)
+        else if (targetDir.z >= -.29f && targetDir.z <= .29f)
         {
             control.moveUp = false;
             control.moveDown = false;
+        }
+
+        if (control.aiProgress.blockingCharacter == null)
+        {
+            return;
+        }
+        else if (control.aiProgress.blockingCharacter.isEnemy)
+        {
+            Vector3 targetOfTargetDir = control.aiProgress.pathfindingAgent.target.transform.position -
+            control.aiProgress.blockingCharacter.transform.position;
+            if (targetOfTargetDir.x < 0)
+            {
+                Debug.Log(control + "facing left.");
+                control.moveRight = true;
+                control.moveLeft = false;
+                control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * 300 * Time.deltaTime);
+            }
+            else if (targetOfTargetDir.x == 0)
+            {
+                if(!control.IsFacingForward())
+                    control.RIGID_BODY.AddForce(control.transform.right * 300 * Time.deltaTime);
+
+                if(control.IsFacingForward())
+                    control.RIGID_BODY.AddForce(control.transform.right * -300 * Time.deltaTime);
+            }
+            else
+            {
+                Debug.Log(control + "facing right.");
+                control.moveLeft = true;
+                control.moveRight = false;
+                control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * -300 * Time.deltaTime);
+            }
         }
     }
 }

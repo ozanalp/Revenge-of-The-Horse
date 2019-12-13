@@ -371,6 +371,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3431644060276157304, guid: 25c2d256ec1df464184bee3132e6f0da,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25c2d256ec1df464184bee3132e6f0da, type: 3}
 --- !u!4 &277606453 stripped
@@ -635,6 +640,11 @@ PrefabInstance:
     - target: {fileID: 8587369414192461024, guid: 25c2d256ec1df464184bee3132e6f0da,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431644060276157304, guid: 25c2d256ec1df464184bee3132e6f0da,
+        type: 3}
+      propertyPath: m_CollisionDetection
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -854,7 +864,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1187,7 +1197,7 @@ PrefabInstance:
     - target: {fileID: 8587369414192461024, guid: 25c2d256ec1df464184bee3132e6f0da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25c2d256ec1df464184bee3132e6f0da, type: 3}

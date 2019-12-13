@@ -116,7 +116,7 @@ public class AIProgress : MonoBehaviour
     public bool TargetIsOnTheSameZAxis()
     {
         if (Mathf.Abs(control.aiProgress.pathfindingAgent.target.transform.position.z -
-            control.transform.position.z) <= .5f)
+            control.transform.position.z) <= .3f)
         {
             return true;
         }

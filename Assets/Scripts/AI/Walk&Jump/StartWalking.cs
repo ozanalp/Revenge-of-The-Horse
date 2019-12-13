@@ -59,12 +59,13 @@ public class StartWalking : StateData
 
         characterState.characterControl.aiController.WalkStraightToStartSpehere();
 
-        //if (!characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis())
-        //{
-        //    characterState.characterControl.aiController.WalkToTheAttackingPosition();
-        //}
+        if (characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis() == false)
+        {
+            //Debug.Log(characterState.characterControl.name + " " + characterState.characterControl.aiProgress.TargetIsOnTheSameZAxis());
+            characterState.characterControl.aiController.WalkToTheAttackingPosition();
+        }
 
-        if (characterState.characterControl.aiProgress.AIDistanceToEndSphere() < 4f)  //7
+        if (characterState.characterControl.aiProgress.AIDistanceToEndSphere() < .7f)  //7
         {
             characterState.characterControl.doubleSpeed = false;
             characterState.characterControl.moveRight = false;
