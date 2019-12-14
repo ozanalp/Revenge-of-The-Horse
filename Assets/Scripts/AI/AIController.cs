@@ -164,11 +164,15 @@ public class AIController : MonoBehaviour
             }
             else if (targetOfTargetDir.x == 0)
             {
-                if(!control.IsFacingForward())
+                if (!control.IsFacingForward())
+                {
                     control.RIGID_BODY.AddForce(control.transform.right * 300 * Time.deltaTime);
+                }
 
-                if(control.IsFacingForward())
+                if (control.IsFacingForward())
+                {
                     control.RIGID_BODY.AddForce(control.transform.right * -300 * Time.deltaTime);
+                }
             }
             else
             {
