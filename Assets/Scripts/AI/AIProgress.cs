@@ -154,7 +154,7 @@ public class AIProgress : MonoBehaviour
                 return true;
             }
         }
-        
+
         if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z > 0f)
         {
             if (control.IsMovingUp())
@@ -175,7 +175,24 @@ public class AIProgress : MonoBehaviour
 
     public void RepositionDestination()
     {
-        pathfindingAgent.startSphere.transform.position = pathfindingAgent.target.transform.position;
-        pathfindingAgent.endSphere.transform.position = pathfindingAgent.target.transform.position;
+        float distanceX = control.transform.position.x - control.aiProgress.pathfindingAgent.target.transform.position.x;
+
+        if(Mathf.Abs(distanceX) >= 0 && Mathf.Abs(distanceX) <= .25f)
+        {
+            return;
+        }
+
+        if (control.IsFacingForward())
+        {
+            pathfindingAgent.startSphere.transform.position = pathfindingAgent.target.transform.position - Vector3.right * 1;
+            pathfindingAgent.endSphere.transform.position = pathfindingAgent.target.transform.position - Vector3.right * 1;
+        }
+        else
+        {
+            pathfindingAgent.startSphere.transform.position = pathfindingAgent.target.transform.position + Vector3.right * 1;
+            pathfindingAgent.endSphere.transform.position = pathfindingAgent.target.transform.position + Vector3.right * 1;
+        }
+        //pathfindingAgent.startSphere.transform.position = pathfindingAgent.target.transform.position;
+        //pathfindingAgent.endSphere.transform.position = pathfindingAgent.target.transform.position;
     }
 }

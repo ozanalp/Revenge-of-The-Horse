@@ -129,20 +129,24 @@ public class AIController : MonoBehaviour
 
     public void WalkToTheAttackingPosition()
     {
-        targetDir = control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position;
+        //targetDir = control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position;
+        targetDir = control.aiProgress.pathfindingAgent.endSphere.transform.position - control.transform.position;
 
-        if (targetDir.z > .3f)
+        if (targetDir.z > .1f)
         {
+            //Debug.Log(control.name + "should move up.");
             control.moveUp = true;
             control.moveDown = false;
         }
-        else if (targetDir.z < -.3f)
+        else if (targetDir.z < -.1f)
         {
+            //Debug.Log(control.name + "should move down.");
             control.moveUp = false;
             control.moveDown = true;
         }
-        else if (targetDir.z >= -.29f && targetDir.z <= .29f)
+        else if (targetDir.z >= -.09f && targetDir.z <= .09f)
         {
+            //Debug.Log(control.name + "is ok.");
             control.moveUp = false;
             control.moveDown = false;
         }

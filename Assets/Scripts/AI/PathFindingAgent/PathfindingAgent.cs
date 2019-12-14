@@ -10,7 +10,6 @@ public class PathfindingAgent : MonoBehaviour
     private NavMeshAgent navMesh;
     private Coroutine moveRoutine;
 
-
     public GameObject startSphere; // THE AGENT WILL HAVE THE INFO OF THE PLATFORM
     public GameObject endSphere; // AND THE NEXT PLATFORM
     public bool startWalk;
