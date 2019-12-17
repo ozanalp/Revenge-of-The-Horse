@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf475cdff9fd6b4b9bfe2c2b4a63687, type: 3}
   m_Name: Fox_TransitionIndexer
   m_EditorClassIdentifier: 
-  index: 0
-  transitionConditions: 
+  index: 1
+  transitionConditions: 04000000
