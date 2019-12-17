@@ -5,6 +5,8 @@ public enum AttackBox
 {
     PUNCH_BOX,
     KICK_BOX,
+
+    MELEE_WEAPON,
 }
 
 [CreateAssetMenu(fileName = "New State", menuName = "AbilityData/Attack")]
@@ -24,7 +26,11 @@ public class Attack : StateData
     [Header("Combo Timers")]
     public float comboStartTime;
     public float comboEndTime;
-
+    
+    [Header("Death Particles")]
+    public bool useDeathParticles;
+    public PoolObjectType particleType;
+    
     private List<AttackInfo> finishedAttacks = new List<AttackInfo>();
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

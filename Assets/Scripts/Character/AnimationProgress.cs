@@ -17,7 +17,6 @@ public class AnimationProgress : MonoBehaviour
     [Header("Damage Info")]
     public Attack attack;
     public CharacterControl attacker;
-    public TriggerDetector damagedTrigger;
     public GameObject attackingBox;
 
     [Header("Movement")]

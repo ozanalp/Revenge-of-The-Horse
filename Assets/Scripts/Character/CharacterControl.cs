@@ -89,6 +89,25 @@ public class CharacterControl : MonoBehaviour
         return triggerDetectors;
     }
 
+    public GameObject GetAttackingBox(AttackBox attackingBox)
+    {
+        if (attackingBox == AttackBox.PUNCH_BOX)
+        {
+            return l_punchBox;
+        }
+        else if (attackingBox == AttackBox.KICK_BOX)
+        {
+            return l_kickBox;
+        }
+        // FUTURE PROGRESS
+        //else if (attackingBox == AttackBox.MELEE_WEAPON)
+        //{
+        //    return animationProgress.holdingWeapon.triggerDetector.gameObject;
+        //}
+
+        return null;
+    }
+
     #region Moved to the TriggerDetector.cs
     //private void OnTriggerEnter(Collider col)
     //{

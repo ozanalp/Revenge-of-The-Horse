@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class DamageDetector : MonoBehaviour
 {
@@ -80,23 +81,34 @@ public class DamageDetector : MonoBehaviour
 
     private bool isCollided(AttackInfo info)
     {
-        foreach (TriggerDetector trigger in control.GetAllTriggers())
+        //foreach (TriggerDetector trigger in control.GetAllTriggers())
+        foreach(KeyValuePair<TriggerDetector, List<Collider>> data in
+                control.animationProgress.collidingAttackBoxes)
         {
-            foreach (Collider collider in trigger.collidingBoxes)
+            //foreach (Collider collider in trigger.collidingBoxes)
+            foreach (Collider collider in data.Value)
             {
                 foreach (AttackBox ab in info.attackBoxes)
                 {
                     if (ab == AttackBox.PUNCH_BOX)
                     {
-                        if (collider.gameObject == info._attacker.l_punchBox)
+                        //if (collider.gameObject == info._attacker.l_punchBox)
+                        if(info._attacker.GetAttackingBox(ab) == collider.gameObject)
                         {
+                            control.animationProgress.attack = info.attackAbility;
+                            control.animationProgress.attacker = info._attacker;
+                            control.animationProgress.attackingBox = info._attacker.GetAttackingBox(ab);
                             return true;
                         }
                     }
                     else if (ab == AttackBox.KICK_BOX)
                     {
-                        if (collider.gameObject == info._attacker.l_kickBox)
+                        //if (collider.gameObject == info._attacker.l_kickBox)
+                        if (info._attacker.GetAttackingBox(ab) == collider.gameObject)
                         {
+                            control.animationProgress.attack = info.attackAbility;
+                            control.animationProgress.attacker = info._attacker;
+                            control.animationProgress.attackingBox = info._attacker.GetAttackingBox(ab);
                             return true;
                         }
                     }
@@ -118,6 +130,29 @@ public class DamageDetector : MonoBehaviour
         if (info.mustCollide)
         {
             CameraManager.Instance.ShakeCamera(.2f);
+
+            if (info.attackAbility.useDeathParticles)
+            {
+                if (info.attackAbility.particleType.ToString().Contains("VFX"))
+                {
+                    GameObject vfx =
+                        PoolManager.Instance.GetObject(info.attackAbility.particleType);
+
+                    vfx.transform.position =
+                        control.animationProgress.attackingBox.transform.position;
+
+                    vfx.SetActive(true);
+
+                    if (info._attacker.IsFacingForward())
+                    {
+                        vfx.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    }
+                    else
+                    {
+                        vfx.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                    }
+                }
+            }
         }
 
         Debug.Log(info._attacker.gameObject.name + " hits " + gameObject.name);
