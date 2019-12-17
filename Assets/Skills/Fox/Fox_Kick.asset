@@ -26,3 +26,5 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 207ba05fe0d5a2e45bf37f481d00cdaf, type: 2}
   comboStartTime: 0
   comboEndTime: 0
+  useDeathParticles: 1
+  particleType: 1
