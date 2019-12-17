@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768d980b4d8a0324fa030d8fb4f63632, type: 3}
   m_Name: Fox_Punch
   m_EditorClassIdentifier: 
+  isPunch: 1
+  isKick: 0
   debug: 0
   startAttackTime: 0.2
   endAttackTime: 0.3
-  colliderNames:
-  - AttackBox Punch
+  attackBoxes: 
   mustCollide: 1
   mustFaceAttacker: 1
   lethalRange: 0
@@ -25,3 +26,5 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 207ba05fe0d5a2e45bf37f481d00cdaf, type: 2}
   comboStartTime: 0
   comboEndTime: 0
+  useDeathParticles: 1
+  particleType: 1
