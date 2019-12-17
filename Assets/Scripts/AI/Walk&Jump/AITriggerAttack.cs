@@ -27,8 +27,7 @@ public class AITriggerAttack : StateData
         }
 
         //Debug.Log(characterState.characterControl.name + characterState.characterControl.aiProgress.AIDistanceToTarget());
-
-        if (characterState.characterControl.aiProgress.AIDistanceToTarget() < 4f)
+        if (characterState.characterControl.aiProgress.AIDistanceToTarget() < 2f)
         {
             ListGroundAttacks[Random.Range(0, ListGroundAttacks.Count)](characterState.characterControl);
         }
@@ -36,8 +35,11 @@ public class AITriggerAttack : StateData
         {
             characterState.characterControl.l_punch = false;
             characterState.characterControl.l_kick = false;
-            characterState.characterControl.aiController.InitializeAI();
+            //characterState.characterControl.aiController.InitializeAI();
         }
+
+        characterState.characterControl.animationProgress.kickAttackTriggered = characterState.characterControl.l_kick;
+        characterState.characterControl.animationProgress.punchAttackTriggered = characterState.characterControl.l_punch;
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -50,28 +52,19 @@ public class AITriggerAttack : StateData
         control.moveUp = false;
         control.moveDown = false;
 
-        if (control.aiProgress.TargetIsOnRightSide())
-        {
-            control.moveRight = true;
-            control.moveLeft = false;
+        //if (control.aiProgress.TargetIsOnRightSide())
+        //{
+        control.moveRight = false;
+        control.moveLeft = false;
 
-            if (control.aiProgress.IsFacingTarget() &&
-                control.animationProgress.IsRunning(typeof(MoveForward)))
-            {
-                control.l_punch = true;
-            }
-        }
-        else
+        if (control.aiProgress.IsFacingTarget() &&
+            control.animationProgress.IsRunning(typeof(MoveForward)) ||
+            control.aiProgress.IsFacingTarget() &&
+            !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
-            control.moveRight = false;
-            control.moveLeft = true;
-
-            if (control.aiProgress.IsFacingTarget() &&
-                control.animationProgress.IsRunning(typeof(MoveForward)))
-            {
-                control.l_punch = true;
-            }
+            control.l_punch = true;
         }
+        //}
     }
 
     public void KickAttack(CharacterControl control)
@@ -79,27 +72,18 @@ public class AITriggerAttack : StateData
         control.moveUp = false;
         control.moveDown = false;
 
-        if (control.aiProgress.TargetIsOnRightSide())
-        {
-            control.moveRight = true;
-            control.moveLeft = false;
+        //if (control.aiProgress.TargetIsOnRightSide())
+        //{
+        control.moveRight = false;
+        control.moveLeft = false;
 
-            if (control.aiProgress.IsFacingTarget() &&
-                control.animationProgress.IsRunning(typeof(MoveForward)))
-            {
-                control.l_kick = true;
-            }
-        }
-        else
+        if (control.aiProgress.IsFacingTarget() &&
+            control.animationProgress.IsRunning(typeof(MoveForward)) ||
+            control.aiProgress.IsFacingTarget() &&
+            !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
-            control.moveRight = false;
-            control.moveLeft = true;
-
-            if (control.aiProgress.IsFacingTarget() &&
-                control.animationProgress.IsRunning(typeof(MoveForward)))
-            {
-                control.l_kick = true;
-            }
+            control.l_kick = true;
         }
+        //}
     }
 }

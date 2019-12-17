@@ -222,13 +222,13 @@ public class CharacterControl : MonoBehaviour
     public bool IsMovingUp()
     {
         if (moveUp)
-        {            
+        {
             return true;
         }
         //else
         {
             return false;
-        }        
+        }
     }
 
     public bool IsMovingDown()

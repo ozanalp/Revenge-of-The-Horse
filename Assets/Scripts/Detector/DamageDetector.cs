@@ -54,7 +54,7 @@ public class DamageDetector : MonoBehaviour
             if (info.mustFaceAttacker)
             {
                 Vector3 vec = transform.position - info._attacker.transform.position;
-                if (vec.z * info._attacker.transform.forward.z < 0f)
+                if (vec.z * info._attacker.transform.right.x < 0f)
                 {
                     continue;
                 }

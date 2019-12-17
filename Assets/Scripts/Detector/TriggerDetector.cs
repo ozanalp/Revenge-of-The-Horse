@@ -4,16 +4,16 @@ using UnityEngine;
 public class TriggerDetector : MonoBehaviour
 {
     public List<Collider> collidingBoxes = new List<Collider>();
-    private CharacterControl owner;
+    public CharacterControl control;
 
     private void Awake()
     {
-        owner = GetComponentInParent<CharacterControl>();
+        control = GetComponentInParent<CharacterControl>();
     }
 
     private void OnTriggerEnter(Collider col)
     {
-        if (owner.collisionSpheres.childs.Contains(col.transform))
+        if (control.collisionSpheres.childs.Contains(col.transform))
         {
             return;
         }

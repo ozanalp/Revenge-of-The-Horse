@@ -14,6 +14,12 @@ public class AnimationProgress : MonoBehaviour
     public bool kickAttackTriggered;
     public bool attackButtonIsReset;
 
+    [Header("Damage Info")]
+    public Attack attack;
+    public CharacterControl attacker;
+    public TriggerDetector damagedTrigger;
+    public GameObject attackingBox;
+
     [Header("Movement")]
     private List<GameObject> spheresList;
     private float hrzBlock;
@@ -23,6 +29,8 @@ public class AnimationProgress : MonoBehaviour
     public float momentum;
 
     [Header("Colliding Objects")]
+    public Dictionary<TriggerDetector, List<Collider>> collidingAttackBoxes =
+            new Dictionary<TriggerDetector, List<Collider>>();
     public Dictionary<GameObject, GameObject> blockingObjs = new Dictionary<GameObject, GameObject>();
 
     [Header("UpdateBoxColldier")]

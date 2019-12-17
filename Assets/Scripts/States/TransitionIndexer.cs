@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum TransitionConditionType
 {
-    UP, DOWN, LEFT, RIGHT, L_PUNCH, L_KICK, H_PUNCH, H_KICK, GRAB, HUMP,
+    UP, DOWN, LEFT, RIGHT, L_PUNCH, L_KICK, H_PUNCH, H_KICK, GRAB, HUMP, MOVING_TO_BLOCKING_OBJ,
 }
 
 [CreateAssetMenu(fileName = "New State", menuName = "AbilityData/TransitionIndexer")]
@@ -77,14 +77,14 @@ public class TransitionIndexer : StateData
 
                 case TransitionConditionType.L_PUNCH:
                 {
-                    if (!control.l_punch)
+                    if (!control.animationProgress.punchAttackTriggered)
                         return false;
                 }
                 break;
 
                 case TransitionConditionType.L_KICK:
                 {
-                    if (!control.l_kick)
+                    if (!control.animationProgress.kickAttackTriggered)
                         return false;
                 }
                 break;
@@ -114,6 +114,27 @@ public class TransitionIndexer : StateData
                 {
                     if (!control.hump)
                         return false;
+                }
+                break;
+
+                case TransitionConditionType.MOVING_TO_BLOCKING_OBJ:
+                {
+                    foreach (KeyValuePair<GameObject, GameObject> data in
+                        control.animationProgress.blockingObjs)
+                    {
+                        Vector3 dir = data.Value.transform.position -
+                        control.transform.position;
+
+                        if (dir.x > 0f && !control.moveRight)
+                        {
+                            return false;
+                        }
+
+                        if (dir.x < 0f && !control.moveLeft)
+                        {
+                            return false;
+                        }
+                    }
                 }
                 break;
             }
