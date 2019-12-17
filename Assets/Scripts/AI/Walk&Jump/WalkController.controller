@@ -26,32 +26,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-4677890278074365313
-AnimatorState:
-  serializedVersion: 5
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: L_Punch
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 0}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1102 &-3193160178820932603
 AnimatorState:
   serializedVersion: 5
@@ -167,6 +141,7 @@ MonoBehaviour:
   listAbilityData:
   - {fileID: 11400000, guid: 9b20550d7ca177e4e809f360be5e1a51, type: 2}
   - {fileID: 11400000, guid: ddd5b5391a4fc7f41bbaf25db24cf847, type: 2}
+  - {fileID: 11400000, guid: 60e68e7848b14754eb46af770f970636, type: 2}
 --- !u!1102 &1464807313774210977
 AnimatorState:
   serializedVersion: 5
@@ -229,9 +204,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -7687098480914107890}
     m_Position: {x: 670, y: 140, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4677890278074365313}
-    m_Position: {x: 680, y: 230, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
