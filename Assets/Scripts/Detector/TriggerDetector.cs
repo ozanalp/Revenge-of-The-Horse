@@ -6,12 +6,20 @@ public class TriggerDetector : MonoBehaviour
     public List<Collider> collidingBoxes = new List<Collider>();
     public CharacterControl control;
 
+    public Vector3 lastPosition;
+    public Quaternion lastRotation;
+
     private void Awake()
     {
         control = GetComponentInParent<CharacterControl>();
     }
 
     private void OnTriggerEnter(Collider col)
+    {
+        CheckCollidingAttackingBox(col);
+    }
+
+    private void CheckCollidingAttackingBox(Collider col)
     {
         if (control.collisionSpheres.childs.Contains(col.transform))
         {
@@ -30,9 +38,19 @@ public class TriggerDetector : MonoBehaviour
             return;
         }
 
-        if (!collidingBoxes.Contains(col))
+        //if (!collidingBoxes.Contains(col))
+        //{
+        //    collidingBoxes.Add(col);
+        //}
+
+        if (!control.animationProgress.collidingAttackBoxes.ContainsKey(this))
         {
-            collidingBoxes.Add(col);
+            control.animationProgress.collidingAttackBoxes.Add(this, new List<Collider>());
+        }
+
+        if (!control.animationProgress.collidingAttackBoxes[this].Contains(col))
+        {
+            control.animationProgress.collidingAttackBoxes[this].Add(col);
         }
     }
 
