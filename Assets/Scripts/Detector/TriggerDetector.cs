@@ -64,4 +64,25 @@ public class TriggerDetector : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider col)
+    {
+        CheckExitingAttackingBoxes(col);
+    }
+
+    void CheckExitingAttackingBoxes(Collider col)
+    {
+        if (control.animationProgress.collidingAttackBoxes.ContainsKey(this))
+        {
+            if (control.animationProgress.collidingAttackBoxes[this].Contains(col))
+            {
+                control.animationProgress.collidingAttackBoxes[this].Remove(col);
+            }
+
+            if (control.animationProgress.collidingAttackBoxes[this].Count == 0)
+            {
+                control.animationProgress.collidingAttackBoxes.Remove(this);
+            }
+        }
+    }
 }
