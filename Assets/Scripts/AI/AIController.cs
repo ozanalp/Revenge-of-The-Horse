@@ -161,7 +161,7 @@ public class AIController : MonoBehaviour
             control.aiProgress.blockingCharacter.transform.position;
             if (targetOfTargetDir.x < 0)
             {
-                Debug.Log(control + "facing left.");
+                //Debug.Log(control + "facing left.");
                 control.moveRight = true;
                 control.moveLeft = false;
                 control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * 300 * Time.deltaTime);
@@ -180,7 +180,7 @@ public class AIController : MonoBehaviour
             }
             else
             {
-                Debug.Log(control + "facing right.");
+                //Debug.Log(control + "facing right.");
                 control.moveLeft = true;
                 control.moveRight = false;
                 control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * -300 * Time.deltaTime);
