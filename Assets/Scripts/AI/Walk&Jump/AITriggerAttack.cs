@@ -12,7 +12,7 @@ public class AITriggerAttack : StateData
     {
         if (ListGroundAttacks.Count == 0)
         {
-            ListGroundAttacks.Add(PuncAttack);
+            ListGroundAttacks.Add(PunchAttack);
             ListGroundAttacks.Add(KickAttack);
         }
     }
@@ -26,8 +26,8 @@ public class AITriggerAttack : StateData
             return;
         }
 
-        //Debug.Log(characterState.characterControl.name + characterState.characterControl.aiProgress.AIDistanceToTarget());
-        if (characterState.characterControl.aiProgress.AIDistanceToTarget() < 2f)
+        Debug.Log(characterState.characterControl.name + characterState.characterControl.aiProgress.AIDistanceToTarget());
+        if (characterState.characterControl.aiProgress.AIDistanceToTarget() < 3f)
         {
             ListGroundAttacks[Random.Range(0, ListGroundAttacks.Count)](characterState.characterControl);
         }
@@ -47,7 +47,7 @@ public class AITriggerAttack : StateData
 
     }
 
-    public void PuncAttack(CharacterControl control)
+    public void PunchAttack(CharacterControl control)
     {
         control.moveUp = false;
         control.moveDown = false;
