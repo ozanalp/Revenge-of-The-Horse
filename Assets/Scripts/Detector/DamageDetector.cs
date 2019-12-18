@@ -19,7 +19,10 @@ public class DamageDetector : MonoBehaviour
     {
         if (AttackManager.Instance.currentAttacks.Count > 0)
         {
-            CheckAttack();
+            if (control.animationProgress.collidingAttackBoxes.Count != 0)
+            {
+                CheckAttack();
+            }
         }
     }
 
