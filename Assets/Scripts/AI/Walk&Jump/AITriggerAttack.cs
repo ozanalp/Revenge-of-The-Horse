@@ -51,39 +51,31 @@ public class AITriggerAttack : StateData
     {
         control.moveUp = false;
         control.moveDown = false;
-
-        //if (control.aiProgress.TargetIsOnRightSide())
-        //{
         control.moveRight = false;
         control.moveLeft = false;
 
-        if (control.aiProgress.IsFacingTarget() &&
-            control.animationProgress.IsRunning(typeof(MoveForward)) ||
-            control.aiProgress.IsFacingTarget() &&
-            !control.animationProgress.IsRunning(typeof(MoveForward)))
+        if (control.aiProgress.IsFacingTarget() && control.animationProgress.IsRunning(typeof(MoveForward)) ||
+            control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
             control.l_punch = true;
         }
-        //}
+
+        control.l_punch = false;
     }
 
     public void KickAttack(CharacterControl control)
     {
         control.moveUp = false;
         control.moveDown = false;
-
-        //if (control.aiProgress.TargetIsOnRightSide())
-        //{
         control.moveRight = false;
         control.moveLeft = false;
 
-        if (control.aiProgress.IsFacingTarget() &&
-            control.animationProgress.IsRunning(typeof(MoveForward)) ||
-            control.aiProgress.IsFacingTarget() &&
-            !control.animationProgress.IsRunning(typeof(MoveForward)))
+        if (control.aiProgress.IsFacingTarget() && control.animationProgress.IsRunning(typeof(MoveForward)) ||
+            control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
             control.l_kick = true;
         }
-        //}
+
+        control.l_kick = false;
     }
 }

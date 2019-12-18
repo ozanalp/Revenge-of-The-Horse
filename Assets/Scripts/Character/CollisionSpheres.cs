@@ -6,10 +6,10 @@ public class CollisionSpheres : MonoBehaviour
     public CharacterControl owner;
     public List<GameObject> topSpheres = new List<GameObject>();
     public List<GameObject> bottomSpheres = new List<GameObject>();
-    public List<GameObject> rightSpheres = new List<GameObject>();
-    public List<GameObject> leftSpheres = new List<GameObject>();
     public List<GameObject> frontSpheres = new List<GameObject>();
     public List<GameObject> backSpheres = new List<GameObject>();
+    public List<GameObject> forwardSpheres = new List<GameObject>();
+    public List<GameObject> backwardSpheres = new List<GameObject>();
     public List<Transform> childs = new List<Transform>();
 
     public static void SetupColliders(BoxCollider box, out float bottom, out float top, out float front, out float back, out float right, out float left)
@@ -30,32 +30,32 @@ public class CollisionSpheres : MonoBehaviour
         for (int i = 0; i < 24; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-            frontSpheres.Add(obj);
-            obj.transform.parent = transform.Find("Front");
+            forwardSpheres.Add(obj);
+            obj.transform.parent = transform.Find("Forward");
         }
         RepositionFrontSpheres();
 
         for (int i = 0; i < 24; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-            backSpheres.Add(obj);
-            obj.transform.parent = transform.Find("Back");
+            backwardSpheres.Add(obj);
+            obj.transform.parent = transform.Find("Backward");
         }
         RepositionBackSpheres();
 
         for (int i = 0; i < 28; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-            rightSpheres.Add(obj);
-            obj.transform.parent = transform.Find("Right");
+            frontSpheres.Add(obj);
+            obj.transform.parent = transform.Find("Front");
         }
         RepositionRightSpheres();
 
         for (int i = 0; i < 28; i++)
         {
             GameObject obj = Instantiate(Resources.Load("ColliderEdge", typeof(GameObject)), Vector3.zero, Quaternion.identity) as GameObject;
-            leftSpheres.Add(obj);
-            obj.transform.parent = transform.Find("Left");
+            backSpheres.Add(obj);
+            obj.transform.parent = transform.Find("Back");
         }
         RepositionLeftSpheres();
 
@@ -86,19 +86,19 @@ public class CollisionSpheres : MonoBehaviour
         {
             go.transform.parent = transform.Find("Bottom");
         }
-        foreach (GameObject go in leftSpheres)
+        foreach (GameObject go in backSpheres)
         {
             go.transform.parent = transform.Find("Left");
         }
-        foreach (GameObject go in rightSpheres)
+        foreach (GameObject go in frontSpheres)
         {
             go.transform.parent = transform.Find("Right");
         }
-        foreach (GameObject go in frontSpheres)
+        foreach (GameObject go in forwardSpheres)
         {
             go.transform.parent = transform.Find("Front");
         }
-        foreach (GameObject go in backSpheres)
+        foreach (GameObject go in backwardSpheres)
         {
             go.transform.parent = transform.Find("Back");
         }
@@ -125,29 +125,29 @@ public class CollisionSpheres : MonoBehaviour
         float sizeX = owner.boxCollider.bounds.size.x;
         float sizeY = owner.boxCollider.bounds.size.y;
 
-        frontSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, front) - transform.position;
-        frontSpheres[1].transform.localPosition = new Vector3(left, top, front) - transform.position;
-        frontSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, front) - transform.position;
-        frontSpheres[3].transform.localPosition = new Vector3(right, top, front) - transform.position;
+        forwardSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, front) - transform.position;
+        forwardSpheres[1].transform.localPosition = new Vector3(left, top, front) - transform.position;
+        forwardSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, front) - transform.position;
+        forwardSpheres[3].transform.localPosition = new Vector3(right, top, front) - transform.position;
 
         float intervalVertical = (sizeY + 0.05f) / 9;
         float intervalHorizontal = (sizeX / 3);
 
-        for (int i = 4; i < frontSpheres.Count; i++)
+        for (int i = 4; i < forwardSpheres.Count; i++)
         {
-            frontSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 3)), front) - transform.position;
+            forwardSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 3)), front) - transform.position;
         }
-        for (int i = 12; i < frontSpheres.Count; i++)
+        for (int i = 12; i < forwardSpheres.Count; i++)
         {
-            frontSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 11)), front) - transform.position;
+            forwardSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 11)), front) - transform.position;
         }
-        for (int i = 20; i < frontSpheres.Count; i++)
+        for (int i = 20; i < forwardSpheres.Count; i++)
         {
-            frontSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 19)), bottom + 0.05f, front) - transform.position;
+            forwardSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 19)), bottom + 0.05f, front) - transform.position;
         }
-        for (int i = 22; i < frontSpheres.Count; i++)
+        for (int i = 22; i < forwardSpheres.Count; i++)
         {
-            frontSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 21)), top, front) - transform.position;
+            forwardSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 21)), top, front) - transform.position;
         }
     }
 
@@ -161,29 +161,29 @@ public class CollisionSpheres : MonoBehaviour
         float sizeX = owner.boxCollider.bounds.size.x;
         float sizeY = owner.boxCollider.bounds.size.y;
 
-        backSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, back) - transform.position;
-        backSpheres[1].transform.localPosition = new Vector3(left, top, back) - transform.position;
-        backSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, back) - transform.position;
-        backSpheres[3].transform.localPosition = new Vector3(right, top, back) - transform.position;
+        backwardSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, back) - transform.position;
+        backwardSpheres[1].transform.localPosition = new Vector3(left, top, back) - transform.position;
+        backwardSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, back) - transform.position;
+        backwardSpheres[3].transform.localPosition = new Vector3(right, top, back) - transform.position;
 
         float intervalVertical = (sizeY + 0.05f) / 9;
         float intervalHorizontal = (sizeX / 3);
 
-        for (int i = 4; i < backSpheres.Count; i++)
+        for (int i = 4; i < backwardSpheres.Count; i++)
         {
-            backSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 3)), back) - transform.position;
+            backwardSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 3)), back) - transform.position;
         }
-        for (int i = 12; i < backSpheres.Count; i++)
+        for (int i = 12; i < backwardSpheres.Count; i++)
         {
-            backSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 11)), back) - transform.position;
+            backwardSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 11)), back) - transform.position;
         }
-        for (int i = 20; i < backSpheres.Count; i++)
+        for (int i = 20; i < backwardSpheres.Count; i++)
         {
-            backSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 19)), bottom + 0.05f, back) - transform.position;
+            backwardSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 19)), bottom + 0.05f, back) - transform.position;
         }
-        for (int i = 22; i < backSpheres.Count; i++)
+        for (int i = 22; i < backwardSpheres.Count; i++)
         {
-            backSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 21)), top, back) - transform.position;
+            backwardSpheres[i].transform.localPosition = new Vector3(left + (intervalHorizontal * (i - 21)), top, back) - transform.position;
         }
     }
 
@@ -197,28 +197,28 @@ public class CollisionSpheres : MonoBehaviour
         float sizeY = owner.boxCollider.bounds.size.y;
         float sizeZ = owner.boxCollider.bounds.size.z;
 
-        rightSpheres[0].transform.localPosition = new Vector3(right, bottom + 0.05f, front) - transform.position;
-        rightSpheres[1].transform.localPosition = new Vector3(right, top, front) - transform.position;
-        rightSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, back) - transform.position;
-        rightSpheres[3].transform.localPosition = new Vector3(right, top, back) - transform.position;
+        frontSpheres[0].transform.localPosition = new Vector3(right, bottom + 0.05f, front) - transform.position;
+        frontSpheres[1].transform.localPosition = new Vector3(right, top, front) - transform.position;
+        frontSpheres[2].transform.localPosition = new Vector3(right, bottom + 0.05f, back) - transform.position;
+        frontSpheres[3].transform.localPosition = new Vector3(right, top, back) - transform.position;
 
         float intervalVertical = (sizeY + 0.05f) / 9;
         float intervalDepth = sizeZ / 5;
-        for (int i = 4; i < rightSpheres.Count; i++)
+        for (int i = 4; i < frontSpheres.Count; i++)
         {
-            rightSpheres[i].transform.localPosition = new Vector3(right, bottom + 0.05f, front - (intervalDepth * (i - 3))) - transform.position;
+            frontSpheres[i].transform.localPosition = new Vector3(right, bottom + 0.05f, front - (intervalDepth * (i - 3))) - transform.position;
         }
-        for (int i = 8; i < rightSpheres.Count; i++)
+        for (int i = 8; i < frontSpheres.Count; i++)
         {
-            rightSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 7)), front) - transform.position;
+            frontSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 7)), front) - transform.position;
         }
-        for (int i = 16; i < rightSpheres.Count; i++)
+        for (int i = 16; i < frontSpheres.Count; i++)
         {
-            rightSpheres[i].transform.localPosition = new Vector3(right, top, front - (intervalDepth * (i - 15))) - transform.position;
+            frontSpheres[i].transform.localPosition = new Vector3(right, top, front - (intervalDepth * (i - 15))) - transform.position;
         }
-        for (int i = 20; i < rightSpheres.Count; i++)
+        for (int i = 20; i < frontSpheres.Count; i++)
         {
-            rightSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 19)), back) - transform.position;
+            frontSpheres[i].transform.localPosition = new Vector3(right, bottom + (intervalVertical * (i - 19)), back) - transform.position;
         }
     }
 
@@ -232,28 +232,28 @@ public class CollisionSpheres : MonoBehaviour
         float sizeY = owner.boxCollider.bounds.size.y;
         float sizeZ = owner.boxCollider.bounds.size.z;
 
-        leftSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, front) - transform.position;
-        leftSpheres[1].transform.localPosition = new Vector3(left, top, front) - transform.position;
-        leftSpheres[2].transform.localPosition = new Vector3(left, bottom + 0.05f, back) - transform.position;
-        leftSpheres[3].transform.localPosition = new Vector3(left, top, back) - transform.position;
+        backSpheres[0].transform.localPosition = new Vector3(left, bottom + 0.05f, front) - transform.position;
+        backSpheres[1].transform.localPosition = new Vector3(left, top, front) - transform.position;
+        backSpheres[2].transform.localPosition = new Vector3(left, bottom + 0.05f, back) - transform.position;
+        backSpheres[3].transform.localPosition = new Vector3(left, top, back) - transform.position;
 
         float intervalVertical = (sizeY + 0.05f) / 9;
         float intervalDepth = sizeZ / 5;
-        for (int i = 4; i < leftSpheres.Count; i++)
+        for (int i = 4; i < backSpheres.Count; i++)
         {
-            leftSpheres[i].transform.localPosition = new Vector3(left, bottom + 0.05f, front - (intervalDepth * (i - 3))) - transform.position;
+            backSpheres[i].transform.localPosition = new Vector3(left, bottom + 0.05f, front - (intervalDepth * (i - 3))) - transform.position;
         }
-        for (int i = 8; i < leftSpheres.Count; i++)
+        for (int i = 8; i < backSpheres.Count; i++)
         {
-            leftSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 7)), front) - transform.position;
+            backSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 7)), front) - transform.position;
         }
-        for (int i = 16; i < leftSpheres.Count; i++)
+        for (int i = 16; i < backSpheres.Count; i++)
         {
-            leftSpheres[i].transform.localPosition = new Vector3(left, top, front - (intervalDepth * (i - 15))) - transform.position;
+            backSpheres[i].transform.localPosition = new Vector3(left, top, front - (intervalDepth * (i - 15))) - transform.position;
         }
-        for (int i = 20; i < leftSpheres.Count; i++)
+        for (int i = 20; i < backSpheres.Count; i++)
         {
-            leftSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 19)), back) - transform.position;
+            backSpheres[i].transform.localPosition = new Vector3(left, bottom + (intervalVertical * (i - 19)), back) - transform.position;
         }
     }
 

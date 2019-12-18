@@ -113,26 +113,14 @@ public class AnimationProgress : MonoBehaviour
     }
 
     private void CheckBlockingObjs()
-    {
-        if (control.moveRight)//(latestMoveForward.speed > 0)
+    {   
+        //if (latestMoveForward.speed > 0)
+        if (control.moveRight && !control.moveLeft || !control.moveRight && control.moveLeft)
         {
-            spheresList = control.collisionSpheres.rightSpheres;
+            spheresList = control.collisionSpheres.frontSpheres;
             hrzBlock = 0.3f;
 
-            foreach (GameObject s in control.collisionSpheres.leftSpheres)
-            {
-                if (blockingObjs.ContainsKey(s))
-                {
-                    blockingObjs.Remove(s);
-                }
-            }
-        }
-        else if(control.moveLeft)
-        {
-            spheresList = control.collisionSpheres.leftSpheres;
-            hrzBlock = -0.3f;
-
-            foreach (GameObject s in control.collisionSpheres.rightSpheres)
+            foreach (GameObject s in control.collisionSpheres.backSpheres)
             {
                 if (blockingObjs.ContainsKey(s))
                 {
@@ -145,10 +133,10 @@ public class AnimationProgress : MonoBehaviour
         {
             if (control.IsMovingUp())
             {
-                spheresList = control.collisionSpheres.frontSpheres;
+                spheresList = control.collisionSpheres.forwardSpheres;
                 vrtBlock = 0.3f;
 
-                foreach (GameObject s in control.collisionSpheres.backSpheres)
+                foreach (GameObject s in control.collisionSpheres.backwardSpheres)
                 {
                     if (blockingObjs.ContainsKey(s))
                     {
@@ -158,10 +146,10 @@ public class AnimationProgress : MonoBehaviour
             }
             else if (control.IsMovingDown())
             {
-                spheresList = control.collisionSpheres.backSpheres;
+                spheresList = control.collisionSpheres.backwardSpheres;
                 vrtBlock = -0.3f;
 
-                foreach (GameObject s in control.collisionSpheres.frontSpheres)
+                foreach (GameObject s in control.collisionSpheres.forwardSpheres)
                 {
                     if (blockingObjs.ContainsKey(s))
                     {
@@ -174,10 +162,10 @@ public class AnimationProgress : MonoBehaviour
         {
             if (control.IsMovingUp())
             {
-                spheresList = control.collisionSpheres.backSpheres;
+                spheresList = control.collisionSpheres.backwardSpheres;
                 vrtBlock = -0.3f;
 
-                foreach (GameObject s in control.collisionSpheres.frontSpheres)
+                foreach (GameObject s in control.collisionSpheres.forwardSpheres)
                 {
                     if (blockingObjs.ContainsKey(s))
                     {
@@ -187,10 +175,10 @@ public class AnimationProgress : MonoBehaviour
             }
             else if (control.IsMovingDown())
             {
-                spheresList = control.collisionSpheres.frontSpheres;
+                spheresList = control.collisionSpheres.forwardSpheres;
                 vrtBlock = 0.3f;
 
-                foreach (GameObject s in control.collisionSpheres.backSpheres)
+                foreach (GameObject s in control.collisionSpheres.backwardSpheres)
                 {
                     if (blockingObjs.ContainsKey(s))
                     {
@@ -202,7 +190,7 @@ public class AnimationProgress : MonoBehaviour
 
         foreach (GameObject o in spheresList)
         {
-            if (control.moveRight || control.moveLeft)
+            if (control.moveRight && !control.moveLeft || !control.moveRight && control.moveLeft)
             {
                 Debug.DrawRay(o.transform.position, control.transform.right * hrzBlock, Color.red);
 

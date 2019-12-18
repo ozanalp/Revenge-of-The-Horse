@@ -175,10 +175,10 @@ public class DamageDetector : MonoBehaviour
 
         collisionSpheres.RemoveSpheres(collisionSpheres.bottomSpheres);
         collisionSpheres.RemoveSpheres(collisionSpheres.topSpheres);
-        collisionSpheres.RemoveSpheres(collisionSpheres.rightSpheres);
-        collisionSpheres.RemoveSpheres(collisionSpheres.leftSpheres);
         collisionSpheres.RemoveSpheres(collisionSpheres.frontSpheres);
         collisionSpheres.RemoveSpheres(collisionSpheres.backSpheres);
+        collisionSpheres.RemoveSpheres(collisionSpheres.forwardSpheres);
+        collisionSpheres.RemoveSpheres(collisionSpheres.backwardSpheres);
 
         if (control.aiController != null)
         {

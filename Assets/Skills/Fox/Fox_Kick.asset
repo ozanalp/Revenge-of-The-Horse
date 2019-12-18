@@ -17,7 +17,7 @@ MonoBehaviour:
   debug: 0
   startAttackTime: 0.2
   endAttackTime: 0.3
-  attackBoxes: 
+  attackBoxes: 01000000
   mustCollide: 1
   mustFaceAttacker: 1
   lethalRange: 0

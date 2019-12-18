@@ -183,7 +183,7 @@ public class MoveForward : StateData
             {
                 foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                 {
-                    foreach (GameObject o in collisionSpheres.rightSpheres)
+                    foreach (GameObject o in collisionSpheres.frontSpheres)
                     {
                         if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out RaycastHit hit, blockDistance))
                         {
@@ -217,7 +217,7 @@ public class MoveForward : StateData
             {
                 foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                 {
-                    foreach (GameObject o in collisionSpheres.leftSpheres)
+                    foreach (GameObject o in collisionSpheres.backSpheres)
                     {
                         if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.right), out RaycastHit hit, blockDistance))
                         {
@@ -260,7 +260,7 @@ public class MoveForward : StateData
                 {
                     foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
-                        foreach (GameObject o in collisionSpheres.frontSpheres)
+                        foreach (GameObject o in collisionSpheres.forwardSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
@@ -287,7 +287,7 @@ public class MoveForward : StateData
                 {
                     foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
-                        foreach (GameObject o in collisionSpheres.backSpheres)
+                        foreach (GameObject o in collisionSpheres.backwardSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.forward), out RaycastHit hit, blockDistance))
                             {
@@ -332,7 +332,7 @@ public class MoveForward : StateData
                 {
                     foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
-                        foreach (GameObject o in collisionSpheres.backSpheres)
+                        foreach (GameObject o in collisionSpheres.backwardSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
                             {
@@ -359,7 +359,7 @@ public class MoveForward : StateData
                 {
                     foreach (CharacterControl co in FindObjectOfType<CharacterManager>().characters)
                     {
-                        foreach (GameObject o in collisionSpheres.frontSpheres)
+                        foreach (GameObject o in collisionSpheres.forwardSpheres)
                         {
                             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(-Vector3.forward), out RaycastHit hit, blockDistance))
                             {

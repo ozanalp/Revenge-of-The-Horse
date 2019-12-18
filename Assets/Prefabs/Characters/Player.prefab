@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 67517058}
   m_Layer: 0
-  m_Name: Left
+  m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 74647028}
   m_Layer: 0
-  m_Name: Right
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127041141}
   m_Layer: 0
-  m_Name: Front
+  m_Name: Forward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 174895950}
   m_Layer: 0
-  m_Name: Back
+  m_Name: Backward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,6 +286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidingBoxes: []
+  control: {fileID: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  lastRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1360666824
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidingBoxes: []
+  control: {fileID: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  lastRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2016131511717048226
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,10 +450,10 @@ MonoBehaviour:
   owner: {fileID: 0}
   topSpheres: []
   bottomSpheres: []
-  rightSpheres: []
-  leftSpheres: []
   frontSpheres: []
   backSpheres: []
+  forwardSpheres: []
+  backwardSpheres: []
   childs: []
 --- !u!1 &2707620552539074202
 GameObject:
@@ -743,6 +749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidingBoxes: []
+  control: {fileID: 0}
+  lastPosition: {x: 0, y: 0, z: 0}
+  lastRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &1224430727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,19 +766,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraShaken: 0
   poolObjectList: 
+  latestMoveForward: {fileID: 0}
   punchAttackTriggered: 0
   kickAttackTriggered: 0
-  maxPressTime: 0.1
+  attackButtonIsReset: 0
+  attack: {fileID: 0}
+  attacker: {fileID: 0}
+  attackingBox: {fileID: 0}
   momentum: 0
-  frameUpdated: 0
-  blockingObj: {fileID: 0}
   updatingBoxCollider: 0
   updatingSpheres: 0
   targetSize: {x: 0, y: 0, z: 0}
   size_Speed: 0
   targetCenter: {x: 0, y: 0, z: 0}
   center_Speed: 0
-  pressTime: 0
 --- !u!114 &826579517699435408
 MonoBehaviour:
   m_ObjectHideFlags: 0

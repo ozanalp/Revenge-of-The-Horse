@@ -38,7 +38,7 @@ public class Catch : StateData
 
     public bool IsGrabbable(CharacterControl control)
     {
-        foreach (GameObject o in control.collisionSpheres.rightSpheres)
+        foreach (GameObject o in control.collisionSpheres.frontSpheres)
         {
             RaycastHit hit;
             if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out hit, distance))
