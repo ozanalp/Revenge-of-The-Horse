@@ -155,20 +155,20 @@ public class AIProgress : MonoBehaviour
             }
         }
 
-        if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z > 0f)
-        {
-            if (control.IsMovingUp())
-            {
-                return true;
-            }
-        }
-        else
-        {
-            if (control.IsMovingDown())
-            {
-                return true;
-            }
-        }
+        //if ((control.aiProgress.pathfindingAgent.target.transform.position - control.transform.position).z > 0f)
+        //{
+        //    if (control.IsMovingUp())
+        //    {
+        //        return true;
+        //    }
+        //}
+        //else
+        //{
+        //    if (control.IsMovingDown())
+        //    {
+        //        return true;
+        //    }
+        //}
 
         return false;
     }

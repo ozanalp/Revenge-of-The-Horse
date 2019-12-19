@@ -16,15 +16,15 @@ MonoBehaviour:
   isKick: 0
   debug: 0
   startAttackTime: 0.2
-  endAttackTime: 0.3
+  endAttackTime: 0.4
   attackBoxes: 00000000
   mustCollide: 1
   mustFaceAttacker: 1
-  lethalRange: 0
+  lethalRange: 1
   maxHits: 1
   deathAnimators:
   - {fileID: 9100000, guid: 207ba05fe0d5a2e45bf37f481d00cdaf, type: 2}
   comboStartTime: 0
   comboEndTime: 0
-  useDeathParticles: 1
+  useDeathParticles: 0
   particleType: 1

@@ -196,7 +196,8 @@ public class MoveForward : StateData
                                     while (IsBlocked(control, speed, stateInfo))
                                     {
                                         Vector3 dist = control.transform.position - hit.transform.position;
-                                        control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        //control.transform.position += Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        control.RIGID_BODY.AddForce(control.transform.forward * Vector3.Magnitude(dist) * 100 * Time.deltaTime);
                                         break;
                                     }
                                 }
@@ -230,7 +231,8 @@ public class MoveForward : StateData
                                     while (IsBlocked(control, speed, stateInfo))
                                     {
                                         Vector3 dist = control.transform.position - hit.transform.position;
-                                        control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        //control.transform.position -= Vector3.SqrMagnitude(dist) * Time.deltaTime * Vector3.forward;
+                                        control.RIGID_BODY.AddForce(control.transform.forward * Vector3.Magnitude(dist) * 100 * Time.deltaTime);
                                         break;
                                     }
                                 }

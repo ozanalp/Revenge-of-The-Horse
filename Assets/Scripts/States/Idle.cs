@@ -63,9 +63,7 @@ public class Idle : StateData
         if (control.moveUp && control.moveDown)
         {
             animator.SetBool(TransitionParameter.Move.ToString(), false);
-        }
-
-        else if (control.moveUp)
+        }else if (control.moveUp)
         {
             animator.SetBool(TransitionParameter.Move.ToString(), true);
         }

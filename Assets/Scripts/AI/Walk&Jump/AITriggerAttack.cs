@@ -26,8 +26,7 @@ public class AITriggerAttack : StateData
             return;
         }
 
-        Debug.Log(characterState.characterControl.name + characterState.characterControl.aiProgress.AIDistanceToTarget());
-        if (characterState.characterControl.aiProgress.AIDistanceToTarget() < 3f)
+        if (characterState.characterControl.aiProgress.AIDistanceToEndSphere() < 1f)
         {
             ListGroundAttacks[Random.Range(0, ListGroundAttacks.Count)](characterState.characterControl);
         }
@@ -35,7 +34,6 @@ public class AITriggerAttack : StateData
         {
             characterState.characterControl.l_punch = false;
             characterState.characterControl.l_kick = false;
-            //characterState.characterControl.aiController.InitializeAI();
         }
 
         characterState.characterControl.animationProgress.kickAttackTriggered = characterState.characterControl.l_kick;
@@ -54,13 +52,16 @@ public class AITriggerAttack : StateData
         control.moveRight = false;
         control.moveLeft = false;
 
-        if (control.aiProgress.IsFacingTarget() && control.animationProgress.IsRunning(typeof(MoveForward)) ||
-            control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
+        if (control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
             control.l_punch = true;
         }
 
-        control.l_punch = false;
+        if (control.l_kick && control.l_punch)
+        {
+            control.l_kick = false;
+            control.l_kick = false;
+        }
     }
 
     public void KickAttack(CharacterControl control)
@@ -70,12 +71,15 @@ public class AITriggerAttack : StateData
         control.moveRight = false;
         control.moveLeft = false;
 
-        if (control.aiProgress.IsFacingTarget() && control.animationProgress.IsRunning(typeof(MoveForward)) ||
-            control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
+        if (control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
             control.l_kick = true;
         }
 
-        control.l_kick = false;
+        if (control.l_kick && control.l_punch)
+        {
+            control.l_kick = false;
+            control.l_kick = false;
+        }
     }
 }

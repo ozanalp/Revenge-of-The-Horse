@@ -22,15 +22,15 @@ public class Attack : StateData
     public float lethalRange;
     public int maxHits;
     public List<RuntimeAnimatorController> deathAnimators = new List<RuntimeAnimatorController>();
-    
+
     [Header("Combo Timers")]
     public float comboStartTime;
     public float comboEndTime;
-    
+
     [Header("Death Particles")]
     public bool useDeathParticles;
     public PoolObjectType particleType;
-    
+
     private List<AttackInfo> finishedAttacks = new List<AttackInfo>();
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -39,6 +39,11 @@ public class Attack : StateData
         characterState.GetCharacterControl(animator).h_punch = false;
         characterState.GetCharacterControl(animator).l_kick = false;
         characterState.GetCharacterControl(animator).h_kick = false;
+
+        characterState.characterControl.l_punch = false;
+        characterState.characterControl.h_punch = false;
+        characterState.characterControl.l_kick = false;
+        characterState.characterControl.h_kick = false;
 
         animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
         animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
@@ -118,6 +123,16 @@ public class Attack : StateData
                     {
                         info.RegisterAttack(this);
 
+                        CharacterControl control = characterState.GetCharacterControl(animator);
+                        while (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
+                        {
+                            for (float t = 0; t <= startAttackTime; t += Time.deltaTime)
+                            {
+                                control.l_kickBox.SetActive(true);
+                            }
+                            break;
+                        }
+
                         if (debug)
                         {
                             Debug.Log(name + " registered: " + stateInfo.normalizedTime);
@@ -126,6 +141,14 @@ public class Attack : StateData
                 }
             }
         }
+
+        //if (characterState.characterControl.l_punch && characterState.characterControl.l_kick)
+        //{
+        //    characterState.characterControl.l_kick = false;
+        //    characterState.characterControl.l_punch = false;
+        //    characterState.GetCharacterControl(animator).l_punch = false;
+        //    characterState.GetCharacterControl(animator).l_kick = false;
+        //}
     }
 
     public void DeregisterAttack(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -177,6 +200,12 @@ public class Attack : StateData
                         info.isFinished = true;
                         info.GetComponent<PoolObject>().TurnOff();
 
+                        CharacterControl control = characterState.GetCharacterControl(animator);
+                        if (info.isFinished)
+                        {
+                            control.l_kickBox.SetActive(false);
+                        }
+
                         if (debug)
                         {
                             Debug.Log(name + " de-registered: " + stateInfo.normalizedTime);
@@ -185,6 +214,9 @@ public class Attack : StateData
                 }
             }
         }
+
+        characterState.characterControl.l_kick = false;
+        characterState.characterControl.l_punch = false;
     }
 
     public void CheckCombo(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

@@ -134,19 +134,16 @@ public class AIController : MonoBehaviour
 
         if (targetDir.z > .1f)
         {
-            //Debug.Log(control.name + "should move up.");
             control.moveUp = true;
             control.moveDown = false;
         }
         else if (targetDir.z < -.1f)
         {
-            //Debug.Log(control.name + "should move down.");
             control.moveUp = false;
             control.moveDown = true;
         }
         else if (targetDir.z >= -.09f && targetDir.z <= .09f)
         {
-            //Debug.Log(control.name + "is ok.");
             control.moveUp = false;
             control.moveDown = false;
         }
@@ -161,7 +158,6 @@ public class AIController : MonoBehaviour
             control.aiProgress.blockingCharacter.transform.position;
             if (targetOfTargetDir.x < 0)
             {
-                //Debug.Log(control + "facing left.");
                 control.moveRight = true;
                 control.moveLeft = false;
                 control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * 300 * Time.deltaTime);
@@ -180,7 +176,6 @@ public class AIController : MonoBehaviour
             }
             else
             {
-                //Debug.Log(control + "facing right.");
                 control.moveLeft = true;
                 control.moveRight = false;
                 control.RIGID_BODY.AddForce(control.transform.right * Vector3.Magnitude(targetOfTargetDir) * -300 * Time.deltaTime);
