@@ -35,15 +35,18 @@ public class Attack : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        characterState.GetCharacterControl(animator).l_punch = false;
-        characterState.GetCharacterControl(animator).h_punch = false;
-        characterState.GetCharacterControl(animator).l_kick = false;
-        characterState.GetCharacterControl(animator).h_kick = false;
+        //characterState.GetCharacterControl(animator).l_punch = false;
+        //characterState.GetCharacterControl(animator).h_punch = false;
+        //characterState.GetCharacterControl(animator).l_kick = false;
+        //characterState.GetCharacterControl(animator).h_kick = false;
 
-        characterState.characterControl.l_punch = false;
-        characterState.characterControl.h_punch = false;
-        characterState.characterControl.l_kick = false;
-        characterState.characterControl.h_kick = false;
+        //characterState.characterControl.l_punch = false;
+        //characterState.characterControl.h_punch = false;
+        //characterState.characterControl.l_kick = false;
+        //characterState.characterControl.h_kick = false;
+
+        characterState.characterControl.animationProgress.kickAttackTriggered = false;
+        characterState.characterControl.animationProgress.punchAttackTriggered = false;
 
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], false);
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], false);
