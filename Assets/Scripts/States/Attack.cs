@@ -224,35 +224,62 @@ public class Attack : StateData
 
     public void CheckCombo(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        if (isPunch)
-        {
-            if (stateInfo.normalizedTime >= comboStartTime)
-            {
-                if (stateInfo.normalizedTime <= comboEndTime)
-                {
-                    CharacterControl control = characterState.GetCharacterControl(animator);
+        //if (isPunch)
+        //{
+        //    if (stateInfo.normalizedTime >= comboStartTime)
+        //    {
+        //        if (stateInfo.normalizedTime <= comboEndTime)
+        //        {
+        //            CharacterControl control = characterState.GetCharacterControl(animator);
 
+        //            if (control.animationProgress.punchAttackTriggered)
+        //            {
+        //                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
+        //                //characterState.characterControl.animationProgress.punchAttackTriggered = false;
+        //            }
+        //        }
+        //    }
+        //}
+
+        //if (isKick)
+        //{
+        //    if (stateInfo.normalizedTime >= comboStartTime)
+        //    {
+        //        if (stateInfo.normalizedTime <= comboEndTime)
+        //        {
+        //            CharacterControl control = characterState.GetCharacterControl(animator);
+
+        //            if (control.animationProgress.kickAttackTriggered/*control.l_kick*/)
+        //            {
+        //                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
+        //                //characterState.characterControl.animationProgress.kickAttackTriggered = false;
+        //            }
+        //        }
+        //    }
+        //}
+
+
+        if (stateInfo.normalizedTime >= comboStartTime)
+        {
+            if (stateInfo.normalizedTime <= comboEndTime)
+            {
+                CharacterControl control = characterState.GetCharacterControl(animator);
+
+                if (isPunch)
+                {
                     if (control.animationProgress.punchAttackTriggered)
                     {
                         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
-                        characterState.characterControl.animationProgress.punchAttackTriggered = false;
+                        //characterState.characterControl.animationProgress.punchAttackTriggered = false;
                     }
                 }
-            }
-        }
 
-        if (isKick)
-        {
-            if (stateInfo.normalizedTime >= comboStartTime)
-            {
-                if (stateInfo.normalizedTime <= comboEndTime)
+                if (isKick)
                 {
-                    CharacterControl control = characterState.GetCharacterControl(animator);
-
                     if (control.animationProgress.kickAttackTriggered/*control.l_kick*/)
                     {
                         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
-                        characterState.characterControl.animationProgress.kickAttackTriggered = false;
+                        //characterState.characterControl.animationProgress.kickAttackTriggered = false;
                     }
                 }
             }
