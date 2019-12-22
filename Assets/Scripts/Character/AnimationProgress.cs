@@ -20,7 +20,7 @@ public class AnimationProgress : MonoBehaviour
     public GameObject attackingBox;
 
     [Header("Movement")]
-    private List<GameObject> spheresList;
+    [HideInInspector] public List<GameObject> spheresList;
     private float hrzBlock;
     private float vrtBlock;
 
