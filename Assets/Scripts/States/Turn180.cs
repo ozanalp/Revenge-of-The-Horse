@@ -25,6 +25,6 @@ public class Turn180 : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(TransitionParameter.Turn.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Turn], false);
     }
 }

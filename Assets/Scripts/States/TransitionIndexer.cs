@@ -19,7 +19,7 @@ public class TransitionIndexer : StateData
 
         if (MakeTransition(control))
         {
-            animator.SetInteger(TransitionParameter.TransitionIndex.ToString(), index);
+            animator.SetInteger(HashManager.Instance.dicMainParams[TransitionParameter.TransitionIndex], index);
         }
     }
 
@@ -29,17 +29,17 @@ public class TransitionIndexer : StateData
 
         if (MakeTransition(control))
         {
-            animator.SetInteger(TransitionParameter.TransitionIndex.ToString(), index);
+            animator.SetInteger(HashManager.Instance.dicMainParams[TransitionParameter.TransitionIndex], index);
         }
         else
         {
-            animator.SetInteger(TransitionParameter.TransitionIndex.ToString(), 0);
+            animator.SetInteger(HashManager.Instance.dicMainParams[TransitionParameter.TransitionIndex], 0);
         }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetInteger(TransitionParameter.TransitionIndex.ToString(), 0);
+        animator.SetInteger(HashManager.Instance.dicMainParams[TransitionParameter.TransitionIndex], 0);
     }
 
     bool MakeTransition(CharacterControl control)

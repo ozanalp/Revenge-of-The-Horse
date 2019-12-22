@@ -95,7 +95,8 @@ public class CharacterControl : MonoBehaviour
         {
             return l_punchBox;
         }
-        else if (attackingBox == AttackBox.KICK_BOX)
+        
+        if (attackingBox == AttackBox.KICK_BOX)
         {
             return l_kickBox;
         }

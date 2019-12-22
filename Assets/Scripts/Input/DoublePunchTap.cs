@@ -42,8 +42,8 @@ public class DoublePunchTap : Singleton<DoublePunchTap>
             if (clickCounter >= 2)
             {
                 doubleTap = true;
-                animator.SetBool(TransitionParameter.H_Punch.ToString(), true);
-                animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Punch], true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], false);
                 Debug.Log("Double Punch");
                 break;
             }

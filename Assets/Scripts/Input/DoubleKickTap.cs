@@ -47,8 +47,8 @@ public class DoubleKickTap : Singleton<DoubleKickTap>
             if (clickCounter >= 2)
             {
                 doubleTap = true;
-                animator.SetBool(TransitionParameter.H_Kick.ToString(), true);
-                animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], false);
                 Debug.Log("Double Kick");
                 break;
             }

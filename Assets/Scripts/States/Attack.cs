@@ -45,10 +45,10 @@ public class Attack : StateData
         characterState.characterControl.l_kick = false;
         characterState.characterControl.h_kick = false;
 
-        animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Kick.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], false);
 
         GameObject obj = PoolManager.Instance.GetObject(PoolObjectType.ATTACKINFO);
         AttackInfo info = obj.GetComponent<AttackInfo>();
@@ -231,7 +231,7 @@ public class Attack : StateData
 
                     if (control.animationProgress.punchAttackTriggered)
                     {
-                        animator.SetBool(TransitionParameter.L_Punch.ToString(), true);
+                        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
                         characterState.characterControl.animationProgress.punchAttackTriggered = false;
                     }
                 }
@@ -248,7 +248,7 @@ public class Attack : StateData
 
                     if (control.animationProgress.kickAttackTriggered/*control.l_kick*/)
                     {
-                        animator.SetBool(TransitionParameter.L_Kick.ToString(), true);
+                        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
                         characterState.characterControl.animationProgress.kickAttackTriggered = false;
                     }
                 }
@@ -258,10 +258,10 @@ public class Attack : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Kick.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], false);
 
         ClearAttack();
     }

@@ -7,8 +7,8 @@ public class Release : StateData
 {
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(TransitionParameter.Hump.ToString(), false);
-        animator.SetBool(TransitionParameter.Grab.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

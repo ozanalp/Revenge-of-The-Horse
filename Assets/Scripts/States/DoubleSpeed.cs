@@ -19,26 +19,26 @@ public class DoubleSpeed : StateData
             {
                 if (control.moveLeft || control.moveRight || control.moveUp || control.moveDown)
                 {
-                    animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), true);
+                    animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], true);
                 }
                 else
                 {
-                    animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), false);
+                    animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], false);
                 }
             }
             else
             {
-                animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], true);
             }
 
             if(control.moveRight && control.moveLeft || control.moveUp && control.moveDown)
             {
-                animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), false);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], false);
             }
         }
         else
         {
-            animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], false);
         }
     }
 

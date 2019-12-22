@@ -60,17 +60,17 @@ public class MoveForward : StateData
 
         if (!control.moveRight && !control.moveLeft && !control.moveUp && !control.moveDown)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
         }
         
         if (control.moveRight || control.moveLeft || control.moveUp || control.moveDown)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
         }
 
         if (control.moveRight && control.moveLeft || control.moveUp && control.moveDown)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
         }
 
         if (useMomentum)

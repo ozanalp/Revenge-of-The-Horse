@@ -16,17 +16,17 @@ public class CheckRunningAndWalking : StateData
 
         if ((control.moveLeft || control.moveRight || control.moveUp || control.moveDown) && control.doubleSpeed)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
-            animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], true);
         }
         else if (!control.doubleSpeed)
         {
-            animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], false);
         }
         else
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), false);
-            animator.SetBool(TransitionParameter.DoubleSpeed.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.DoubleSpeed], false);
         }
     }
 

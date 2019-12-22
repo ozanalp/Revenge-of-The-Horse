@@ -7,13 +7,15 @@ public class Idle : StateData
 {
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Punch.ToString(), false);
-        animator.SetBool(TransitionParameter.H_Kick.ToString(), false);
-        animator.SetBool(TransitionParameter.Grab.ToString(), false);
-        animator.SetBool(TransitionParameter.Hump.ToString(), false);
-        animator.SetBool(TransitionParameter.Move.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Punch], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
+
+        characterState.characterControl.animationProgress.blockingObjs.Clear();
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -22,65 +24,60 @@ public class Idle : StateData
 
         if (control.animationProgress.punchAttackTriggered)
         {
-            animator.SetBool(TransitionParameter.L_Punch.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
             characterState.characterControl.animationProgress.punchAttackTriggered = false;
         }
 
         if (control.animationProgress.kickAttackTriggered)
         {
-            animator.SetBool(TransitionParameter.L_Kick.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
             characterState.characterControl.animationProgress.kickAttackTriggered = false;
         }
 
         if (control.h_punch)
         {
-            animator.SetBool(TransitionParameter.H_Punch.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Punch], true);
         }
 
         if (control.h_kick)
         {
-            animator.SetBool(TransitionParameter.H_Kick.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], true);
         }
 
         if (control.grab)
         {
-            animator.SetBool(TransitionParameter.Grab.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], true);
         }
 
         if(control.moveRight && control.moveLeft)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
         }
         else if (control.moveRight)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
         }
         else if (control.moveLeft)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
         }
 
         if (control.moveUp && control.moveDown)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), false);
-        }else if (control.moveUp)
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
+        }
+        else if (control.moveUp)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
         }
         else if (control.moveDown)
         {
-            animator.SetBool(TransitionParameter.Move.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
         }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        //animator.SetBool(TransitionParameter.L_Punch.ToString(), false);
-        //animator.SetBool(TransitionParameter.L_Kick.ToString(), false);
-        //animator.SetBool(TransitionParameter.H_Punch.ToString(), false);
-        //animator.SetBool(TransitionParameter.H_Kick.ToString(), false);
-        //animator.SetBool(TransitionParameter.Grab.ToString(), false);
-        //animator.SetBool(TransitionParameter.Hump.ToString(), false);
-        //animator.SetBool(TransitionParameter.Move.ToString(), false);
+
     }
 }

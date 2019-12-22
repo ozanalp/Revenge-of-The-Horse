@@ -18,21 +18,20 @@ public class CheckRunningTurn : StateData
         {
             if (control.moveLeft)
             {
-                animator.SetBool(TransitionParameter.Turn.ToString(), true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Turn], true);
             }
         }
-        //if (!control.IsFacingForward())
         else
         {
             if (control.moveRight)
             {
-                animator.SetBool(TransitionParameter.Turn.ToString(), true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Turn], true);
             }
         }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        animator.SetBool(TransitionParameter.Turn.ToString(), false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Turn], false);
     }
 }

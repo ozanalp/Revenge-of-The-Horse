@@ -17,17 +17,17 @@ public class Catch : StateData
         {
             if (Input.GetKey(KeyCode.Tab))
             {
-                animator.SetBool(TransitionParameter.Grab.ToString(), true);
+                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], true);
             }
         }
         else
         {
-            animator.SetBool(TransitionParameter.Grab.ToString(), false);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);
         }
 
         if (control.hump)
         {
-            animator.SetBool(TransitionParameter.Hump.ToString(), true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], true);
         }
     }
 
