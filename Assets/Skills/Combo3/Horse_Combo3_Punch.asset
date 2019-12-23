@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 768d980b4d8a0324fa030d8fb4f63632, type: 3}
-  m_Name: Horse_Punch
+  m_Name: Horse_Combo3_Punch
   m_EditorClassIdentifier: 
   isPunch: 1
   isKick: 0
   debug: 0
-  startAttackTime: 0.25
-  endAttackTime: 0.7
+  startAttackTime: 0.3
+  endAttackTime: 0.8
   attackBoxes: 00000000
   mustCollide: 1
   mustFaceAttacker: 0
@@ -24,7 +24,7 @@ MonoBehaviour:
   maxHits: 1
   deathAnimators:
   - {fileID: 9100000, guid: de57cb0765d2eb2428393a6212736adc, type: 2}
-  comboStartTime: 0.2
-  comboEndTime: 0.8
+  comboStartTime: 0.35
+  comboEndTime: 0.85
   useDeathParticles: 0
   particleType: 1

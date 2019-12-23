@@ -450,7 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterControl: {fileID: 0}
   listAbilityData:
-  - {fileID: 11400000, guid: aa6147d9ad769be4c9a83eec466f4f24, type: 2}
+  - {fileID: 11400000, guid: d219a9af2b0ff0e4c93ae128aff89c26, type: 2}
+  - {fileID: 11400000, guid: 1b778d4e2080d2043a5fc52b80d110f0, type: 2}
 --- !u!1101 &-5150881872680569426
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -481,7 +482,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: combo3_hit
-  m_Speed: 1
+  m_Speed: 0.9
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4520372845649906302}
@@ -676,9 +677,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.09305054
+  m_TransitionDuration: 0.06
   m_TransitionOffset: 0
-  m_ExitTime: 0.96089333
+  m_ExitTime: 0.99
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -1324,9 +1325,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.09
+  m_TransitionDuration: 0.074375
   m_TransitionOffset: 0
-  m_ExitTime: 0.8999999
+  m_ExitTime: 0.88934654
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2107,7 +2108,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: combo1_hit
-  m_Speed: 0.85
+  m_Speed: 0.8
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3101999698713739522}
