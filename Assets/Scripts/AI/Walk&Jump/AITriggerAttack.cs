@@ -60,7 +60,7 @@ public class AITriggerAttack : StateData
         if (control.l_kick && control.l_punch)
         {
             control.l_kick = false;
-            control.l_kick = false;
+            control.l_punch = false;
         }
     }
 
@@ -79,7 +79,7 @@ public class AITriggerAttack : StateData
         if (control.l_kick && control.l_punch)
         {
             control.l_kick = false;
-            control.l_kick = false;
+            control.l_punch = false;
         }
     }
 }

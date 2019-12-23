@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27973c520cf97a24da47b1d404d13cba, type: 3}
-  m_Name: Horse_LowPunch_ForceTransition
+  m_Name: Horse_Combo3_Punch_ForceTransition
   m_EditorClassIdentifier: 
-  transitionTiming: 0.5
+  transitionTiming: 0

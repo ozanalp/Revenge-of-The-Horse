@@ -35,16 +35,6 @@ public class Attack : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        //characterState.GetCharacterControl(animator).l_punch = false;
-        //characterState.GetCharacterControl(animator).h_punch = false;
-        //characterState.GetCharacterControl(animator).l_kick = false;
-        //characterState.GetCharacterControl(animator).h_kick = false;
-
-        //characterState.characterControl.l_punch = false;
-        //characterState.characterControl.h_punch = false;
-        //characterState.characterControl.l_kick = false;
-        //characterState.characterControl.h_kick = false;
-
         characterState.characterControl.animationProgress.kickAttackTriggered = false;
         characterState.characterControl.animationProgress.punchAttackTriggered = false;
 
@@ -57,7 +47,7 @@ public class Attack : StateData
         AttackInfo info = obj.GetComponent<AttackInfo>();
 
         obj.SetActive(true);
-        info.ResetAttackInfo(this, characterState.GetCharacterControl(animator));
+        info.ResetAttackInfo(this, characterState.characterControl);
 
         if (!AttackManager.Instance.currentAttacks.Contains(info))
         {
@@ -75,23 +65,24 @@ public class Attack : StateData
 
     public void RegisterAttack(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        if (isPunch)
+        CharacterControl control = characterState.GetCharacterControl(animator);
+
+        if (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
         {
-            if (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
+            foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
             {
-                foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
+                if (info == null)
                 {
-                    if (info == null)
-                    {
-                        Debug.Log(info + " is null");
-                        continue;
-                    }
+                    Debug.Log("Register" + info + " is null");
+                    continue;
+                }
 
-                    if (!info.isRegistered && info.attackAbility == this)
-                    {
-                        info.RegisterAttack(this);
+                if (!info.isRegistered && info.attackAbility == this)
+                {
+                    info.RegisterAttack(this);
 
-                        CharacterControl control = characterState.GetCharacterControl(animator);
+                    if (isPunch)
+                    {
                         while (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
                         {
                             for (float t = 0; t <= startAttackTime; t += Time.deltaTime)
@@ -100,33 +91,10 @@ public class Attack : StateData
                             }
                             break;
                         }
-
-                        if (debug)
-                        {
-                            Debug.Log(name + " registered: " + stateInfo.normalizedTime);
-                        }
-                    }
-                }
-            }
-        }
-
-        if (isKick)
-        {
-            if (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
-            {
-                foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
-                {
-                    if (info == null)
-                    {
-                        Debug.Log(info + " is null");
-                        continue;
                     }
 
-                    if (!info.isRegistered && info.attackAbility == this)
+                    if (isKick)
                     {
-                        info.RegisterAttack(this);
-
-                        CharacterControl control = characterState.GetCharacterControl(animator);
                         while (startAttackTime <= stateInfo.normalizedTime && endAttackTime > stateInfo.normalizedTime)
                         {
                             for (float t = 0; t <= startAttackTime; t += Time.deltaTime)
@@ -135,151 +103,79 @@ public class Attack : StateData
                             }
                             break;
                         }
+                    }
 
-                        if (debug)
-                        {
-                            Debug.Log(name + " registered: " + stateInfo.normalizedTime);
-                        }
+                    if (debug)
+                    {
+                        Debug.Log(name + " registered: " + stateInfo.normalizedTime);
                     }
                 }
             }
         }
-
-        //if (characterState.characterControl.l_punch && characterState.characterControl.l_kick)
-        //{
-        //    characterState.characterControl.l_kick = false;
-        //    characterState.characterControl.l_punch = false;
-        //    characterState.GetCharacterControl(animator).l_punch = false;
-        //    characterState.GetCharacterControl(animator).l_kick = false;
-        //}
     }
 
     public void DeregisterAttack(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        if (isPunch)
+        CharacterControl control = characterState.GetCharacterControl(animator);
+
+        if (stateInfo.normalizedTime >= endAttackTime)
         {
-            if (stateInfo.normalizedTime >= endAttackTime)
+            foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
             {
-                foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
+                if (info == null)
                 {
-                    if (info == null)
-                    {
-                        continue;
-                    }
+                    Debug.Log("Deregister" + info + " is null");
+                    continue;
+                }
 
-                    if (info.attackAbility == this && !info.isFinished)
-                    {
-                        info.isFinished = true;
-                        info.GetComponent<PoolObject>().TurnOff();
+                if (info.attackAbility == this && !info.isFinished)
+                {
+                    info.isFinished = true;
+                    info.GetComponent<PoolObject>().TurnOff();
 
-                        CharacterControl control = characterState.GetCharacterControl(animator);
-                        if (info.isFinished)
+                    if (info.isFinished)
+                    {
+                        if (isPunch)
                         {
                             control.l_punchBox.SetActive(false);
                         }
 
-                        if (debug)
-                        {
-                            Debug.Log(name + " de-registered: " + stateInfo.normalizedTime);
-                        }
-                    }
-                }
-            }
-        }
-
-        if (isKick)
-        {
-            if (stateInfo.normalizedTime >= endAttackTime)
-            {
-                foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
-                {
-                    if (info == null)
-                    {
-                        continue;
-                    }
-
-                    if (info.attackAbility == this && !info.isFinished)
-                    {
-                        info.isFinished = true;
-                        info.GetComponent<PoolObject>().TurnOff();
-
-                        CharacterControl control = characterState.GetCharacterControl(animator);
-                        if (info.isFinished)
+                        if (isKick)
                         {
                             control.l_kickBox.SetActive(false);
                         }
+                    }
 
-                        if (debug)
-                        {
-                            Debug.Log(name + " de-registered: " + stateInfo.normalizedTime);
-                        }
+                    if (debug)
+                    {
+                        Debug.Log(name + " de-registered: " + stateInfo.normalizedTime);
                     }
                 }
             }
         }
-
-        characterState.characterControl.l_kick = false;
-        characterState.characterControl.l_punch = false;
     }
 
     public void CheckCombo(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        //if (isPunch)
-        //{
-        //    if (stateInfo.normalizedTime >= comboStartTime)
-        //    {
-        //        if (stateInfo.normalizedTime <= comboEndTime)
-        //        {
-        //            CharacterControl control = characterState.GetCharacterControl(animator);
-
-        //            if (control.animationProgress.punchAttackTriggered)
-        //            {
-        //                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
-        //                //characterState.characterControl.animationProgress.punchAttackTriggered = false;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //if (isKick)
-        //{
-        //    if (stateInfo.normalizedTime >= comboStartTime)
-        //    {
-        //        if (stateInfo.normalizedTime <= comboEndTime)
-        //        {
-        //            CharacterControl control = characterState.GetCharacterControl(animator);
-
-        //            if (control.animationProgress.kickAttackTriggered/*control.l_kick*/)
-        //            {
-        //                animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
-        //                //characterState.characterControl.animationProgress.kickAttackTriggered = false;
-        //            }
-        //        }
-        //    }
-        //}
-
+        CharacterControl control = characterState.GetCharacterControl(animator);
 
         if (stateInfo.normalizedTime >= comboStartTime)
         {
             if (stateInfo.normalizedTime <= comboEndTime)
             {
-                CharacterControl control = characterState.GetCharacterControl(animator);
-
                 if (isPunch)
                 {
                     if (control.animationProgress.punchAttackTriggered)
                     {
                         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Punch], true);
-                        //characterState.characterControl.animationProgress.punchAttackTriggered = false;
                     }
                 }
 
                 if (isKick)
                 {
-                    if (control.animationProgress.kickAttackTriggered/*control.l_kick*/)
+                    if (control.animationProgress.kickAttackTriggered)
                     {
                         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.L_Kick], true);
-                        //characterState.characterControl.animationProgress.kickAttackTriggered = false;
                     }
                 }
             }
@@ -302,7 +198,7 @@ public class Attack : StateData
 
         foreach (AttackInfo info in AttackManager.Instance.currentAttacks)
         {
-            if (info == null || info.isFinished)
+            if (info == null || info.attackAbility == this)
             {
                 finishedAttacks.Add(info);
             }

@@ -66,6 +66,8 @@ public class AnimationProgress : MonoBehaviour
         }
         else
         {
+            kickAttackTriggered = false;
+            punchAttackTriggered = false;
             attackButtonIsReset = true;
         }
 
