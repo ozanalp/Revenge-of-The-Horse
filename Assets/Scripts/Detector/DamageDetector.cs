@@ -126,7 +126,7 @@ public class DamageDetector : MonoBehaviour
     {
         if (damageTaken > 0)
         {
-            Debug.Log("this will be changed when there is dmage system implemented.");
+            Debug.Log("this will be changed when there is damage system implemented.");
             return;
         }
 

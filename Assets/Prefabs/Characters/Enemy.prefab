@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathfindingAgent: {fileID: 0}
   blockingCharacter: {fileID: 0}
-  pathIsBlocked: 0
+  doKickAttack: 0
 --- !u!114 &9010074104625335734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +151,11 @@ PrefabInstance:
     - target: {fileID: 2707620553941827290, guid: 8e1e2762464fb67469b3565fb5c81f24,
         type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707620553941827290, guid: 8e1e2762464fb67469b3565fb5c81f24,
+        type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 2707620553941827281, guid: 8e1e2762464fb67469b3565fb5c81f24,
@@ -208,6 +213,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2707620552539074202, guid: 8e1e2762464fb67469b3565fb5c81f24,
+        type: 3}
+      propertyPath: m_Name
+      value: The Fox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2707620552539074204, guid: 8e1e2762464fb67469b3565fb5c81f24,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 341285f992d6acf44a98bd4da9db64fb, type: 2}
+    - target: {fileID: 2707620552539074207, guid: 8e1e2762464fb67469b3565fb5c81f24,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 034d9f8b7d9be994d8964d135a8eb7df,
+        type: 3}
     - target: {fileID: 2707620553941827292, guid: 8e1e2762464fb67469b3565fb5c81f24,
         type: 3}
       propertyPath: m_Size.x
@@ -228,22 +249,6 @@ PrefabInstance:
       propertyPath: isEnemy
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2707620552539074202, guid: 8e1e2762464fb67469b3565fb5c81f24,
-        type: 3}
-      propertyPath: m_Name
-      value: The Fox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2707620552539074204, guid: 8e1e2762464fb67469b3565fb5c81f24,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 341285f992d6acf44a98bd4da9db64fb, type: 2}
-    - target: {fileID: 2707620552539074207, guid: 8e1e2762464fb67469b3565fb5c81f24,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 034d9f8b7d9be994d8964d135a8eb7df,
-        type: 3}
     - target: {fileID: 5022334502768620505, guid: 8e1e2762464fb67469b3565fb5c81f24,
         type: 3}
       propertyPath: m_Enabled

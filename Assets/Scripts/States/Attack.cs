@@ -216,6 +216,8 @@ public class Attack : StateData
     public RuntimeAnimatorController GetDeathAnimator()
     {
         int index = Random.Range(0, deathAnimators.Count);
+        var scoreManager = FindObjectOfType<ScoreManager>();
+        scoreManager.EnemyDead();
         return deathAnimators[index];
     }
 }
