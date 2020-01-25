@@ -13,6 +13,7 @@ public class CharacterControl : MonoBehaviour
 
     [Space(10)]
     [Header("Subcomponents")]
+    public ManualInput manualInput;
     public Animator animator;
     public AnimationProgress animationProgress;
     public AIProgress aiProgress;
@@ -49,6 +50,7 @@ public class CharacterControl : MonoBehaviour
 
     private void Awake()
     {
+        manualInput = GetComponent<ManualInput>();
         animationProgress = GetComponent<AnimationProgress>();
         aiProgress = GetComponentInChildren<AIProgress>();
         damageDetector = GetComponentInChildren<DamageDetector>();
