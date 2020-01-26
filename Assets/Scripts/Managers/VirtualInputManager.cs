@@ -93,9 +93,9 @@ public class VirtualInputManager : Singleton<VirtualInputManager>
         DicKeys.Add(InputKeyType.KEY_HUMP, KeyCode.Space);
         DicKeys.Add(InputKeyType.KEY_LIGHT_KICK, KeyCode.W);
         DicKeys.Add(InputKeyType.KEY_LIGHT_PUNCH, KeyCode.Q);
-        //DicKeys.Add(InputKeyType.KEY_GRAB, KeyCode.Tab);
-        //DicKeys.Add(InputKeyType.KEY_HEAVY_PUNCH, KeyCode.W);
-        //DicKeys.Add(InputKeyType.KEY_HEAVY_KICK, KeyCode.S);
+        DicKeys.Add(InputKeyType.KEY_GRAB, KeyCode.Alpha1);
+        DicKeys.Add(InputKeyType.KEY_HEAVY_PUNCH, KeyCode.Alpha2);
+        DicKeys.Add(InputKeyType.KEY_HEAVY_KICK, KeyCode.S);
 
         SaveKeys();
     }

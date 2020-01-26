@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252671a37cd147f4bb4beda3f3321ae2, type: 3}
   m_Name: SavedKeys
   m_EditorClassIdentifier: 
-  KeyCodesList: 140100001301000011010000120100003001000009000000710000007700000020000000
+  KeyCodesList: 
