@@ -60,14 +60,14 @@ public class PlayerInput : MonoBehaviour
             VirtualInputManager.Instance.attempt = false;
         }
 
-        //if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_GRAB]))
-        //{
-        //    VirtualInputManager.Instance.grab = true;
-        //}
-        //else
-        //{
-        //    VirtualInputManager.Instance.grab = false;
-        //}
+        if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_GRAB]))
+        {
+            VirtualInputManager.Instance.grab = true;
+        }
+        else
+        {
+            VirtualInputManager.Instance.grab = false;
+        }
 
         if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_HUMP]))
         {
@@ -78,14 +78,14 @@ public class PlayerInput : MonoBehaviour
             VirtualInputManager.Instance.hump = false;
         }
 
-        //if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_HEAVY_PUNCH]))
-        //{
-        //    VirtualInputManager.Instance.h_punch = true;
-        //}
-        //else
-        //{
-        //    VirtualInputManager.Instance.h_punch = false;
-        //}
+        if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_HEAVY_PUNCH]))
+        {
+            VirtualInputManager.Instance.h_punch = true;
+        }
+        else
+        {
+            VirtualInputManager.Instance.h_punch = false;
+        }
 
         if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_LIGHT_PUNCH]))
         {
@@ -96,14 +96,14 @@ public class PlayerInput : MonoBehaviour
             VirtualInputManager.Instance.l_punch = false;
         }
 
-        //if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_HEAVY_KICK]))
-        //{
-        //    VirtualInputManager.Instance.h_kick = true;
-        //}
-        //else
-        //{
-        //    VirtualInputManager.Instance.h_kick = false;
-        //}
+        if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_HEAVY_KICK]))
+        {
+            VirtualInputManager.Instance.h_kick = true;
+        }
+        else
+        {
+            VirtualInputManager.Instance.h_kick = false;
+        }
 
         if (Input.GetKey(VirtualInputManager.Instance.DicKeys[InputKeyType.KEY_LIGHT_KICK]))
         {
