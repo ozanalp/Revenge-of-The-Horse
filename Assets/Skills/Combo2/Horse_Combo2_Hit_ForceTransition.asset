@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27973c520cf97a24da47b1d404d13cba, type: 3}
   m_Name: Horse_Combo2_Hit_ForceTransition
   m_EditorClassIdentifier: 
-  transitionTiming: 0.01
+  transitionTiming: 0.725

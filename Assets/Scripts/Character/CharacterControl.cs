@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public enum TransitionParameter
 {
-    Move, Grab, Hump, TransitionIndex, ForceTransition, L_Punch, L_Kick, H_Punch, H_Kick, DoubleSpeed, Turn,
+    Move, Grab, Attempt, Hump, TransitionIndex, ForceTransition, L_Punch, L_Kick, H_Punch, H_Kick, DoubleSpeed, Turn,
 }
 
 public class CharacterControl : MonoBehaviour
@@ -27,6 +28,8 @@ public class CharacterControl : MonoBehaviour
     [Header("Character")]
     public PlayableCharacterType playableCharacterType;
     public bool isEnemy;
+    public string name;
+    public GameObject caughtFur;
 
     [Space(10)]
     [Header("Attack Boxes")]
@@ -97,7 +100,7 @@ public class CharacterControl : MonoBehaviour
         {
             return l_punchBox;
         }
-        
+
         if (attackingBox == AttackBox.KICK_BOX)
         {
             return l_kickBox;
@@ -281,5 +284,30 @@ public class CharacterControl : MonoBehaviour
         {
             c.characterControl = this;
         }
+    }
+
+    public void DeactiveCaller(RaycastHit hit)
+    {
+        StartCoroutine(SettingDeactive(hit));
+    }
+
+    private IEnumerator SettingDeactive(RaycastHit hit)
+    {
+        caughtFur = hit.collider.gameObject;
+        caughtFur.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        name = caughtFur.name;
+        yield return new WaitForSeconds(1f);
+        caughtFur.transform.parent = gameObject.transform;
+        hit.collider.gameObject.SetActive(false);
+    }
+
+    public void CallAnimationEnding()
+    {
+        StartCoroutine(WaitAnimationEnds());
+    }
+
+    private IEnumerator WaitAnimationEnds( )
+    {        
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);                
     }
 }

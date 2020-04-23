@@ -16,6 +16,16 @@ public class Humping : StateData
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], true);
         }
 
+        if (Input.GetKey(KeyCode.Q))
+        {
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], true);
+        }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], true);
+        }
+
         if (Input.GetKey(KeyCode.Tab))
         {
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);

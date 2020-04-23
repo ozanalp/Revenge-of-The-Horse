@@ -20,7 +20,7 @@ MonoBehaviour:
   attackBoxes: 00000000
   mustCollide: 1
   mustFaceAttacker: 1
-  lethalRange: 1
+  lethalRange: 2
   maxHits: 1
   deathAnimators:
   - {fileID: 9100000, guid: 207ba05fe0d5a2e45bf37f481d00cdaf, type: 2}

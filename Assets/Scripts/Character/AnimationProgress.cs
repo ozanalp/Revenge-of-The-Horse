@@ -71,7 +71,7 @@ public class AnimationProgress : MonoBehaviour
             attackButtonIsReset = true;
         }
 
-        if (DoublePunchTap.Instance.doubleTap)
+        if (DoublePunchTap.Instance.doubleTap || DoubleKickTap.Instance.doubleTap)
         {
             punchAttackTriggered = false;
             kickAttackTriggered = false;
@@ -225,6 +225,8 @@ public class AnimationProgress : MonoBehaviour
                         blockingObjs.Remove(o);
                     }
                 }
+
+                control.grab = false;
             }
 
             if (control.IsMovingUp() || control.IsMovingDown())
@@ -260,6 +262,8 @@ public class AnimationProgress : MonoBehaviour
                         blockingObjs.Remove(o);
                     }
                 }
+
+                control.grab = false;
             }
         }
     }

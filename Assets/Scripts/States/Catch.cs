@@ -3,6 +3,7 @@
 [CreateAssetMenu(fileName = "New State", menuName = "AbilityData/Catch")]
 public class Catch : StateData
 {
+    RaycastHit hit;
     public float distance;
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
@@ -33,19 +34,24 @@ public class Catch : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        CharacterControl control = characterState.GetCharacterControl(animator);
+        
+        if (control.grab) control.DeactiveCaller(hit);
     }
 
-    public bool IsGrabbable(CharacterControl control)
+    private bool IsGrabbable(CharacterControl control)
     {
         foreach (GameObject o in control.collisionSpheres.frontSpheres)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(o.transform.position, o.transform.TransformDirection(Vector3.right), out hit, distance))
-            {                
+            if (Physics.Raycast(o.transform.position, o.transform.right, out RaycastHit hit, distance))
+            {
+                this.hit = hit;
+                control.grab = true;
                 return true;
             }
         }
+
+        control.grab = false;
         return false;
     }
 }

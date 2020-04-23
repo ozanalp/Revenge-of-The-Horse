@@ -66,6 +66,7 @@ public class MoveForward : StateData
         if (control.moveRight || control.moveLeft || control.moveUp || control.moveDown)
         {
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);
         }
 
         if (control.moveRight && control.moveLeft || control.moveUp && control.moveDown)

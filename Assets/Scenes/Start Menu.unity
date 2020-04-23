@@ -511,6 +511,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: mute
+      value: 
+      objectReference: {fileID: 1013268887}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 1928749454}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 1943879706}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: textSliderMusicVolume
+      value: 
+      objectReference: {fileID: 1247134268}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: backgroundSlider
+      value: 
+      objectReference: {fileID: 870339886}
+    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
+        type: 3}
+      propertyPath: textSliderBackgroundVolume
+      value: 
+      objectReference: {fileID: 18197512}
     - target: {fileID: 4818869194290972508, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -566,81 +596,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].name
-      value: Music
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].volume
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].pitch
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: backgroundSlider
-      value: 
-      objectReference: {fileID: 870339886}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: musicSlider
-      value: 
-      objectReference: {fileID: 1943879706}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 1e4af052b4f10bf419a2e7563d183b8c, type: 3}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 01d07bf94380c02488b5f83005ba28a1, type: 3}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[1].mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: sounds.Array.data[0].mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: mute
-      value: 
-      objectReference: {fileID: 1013268887}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: textSliderBackgroundVolume
-      value: 
-      objectReference: {fileID: 18197512}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: textSliderMusicVolume
-      value: 
-      objectReference: {fileID: 1247134268}
-    - target: {fileID: 8548012144301970809, guid: 0a378dac8ac2e774cbab1cc7f7d508b3,
-        type: 3}
-      propertyPath: music
-      value: 
-      objectReference: {fileID: 1928749454}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a378dac8ac2e774cbab1cc7f7d508b3, type: 3}
 --- !u!114 &1013268887 stripped

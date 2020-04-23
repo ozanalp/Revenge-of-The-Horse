@@ -18,6 +18,13 @@ public class Release : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        var control = characterState.GetCharacterControl(animator);
+        var caughtFur = control.caughtFur;
         
+        control.CallAnimationEnding();
+
+        caughtFur.GetComponentInChildren<SpriteRenderer>().enabled = true;
+        caughtFur.SetActive(true);
+        caughtFur.transform.parent = null;
     }
 }

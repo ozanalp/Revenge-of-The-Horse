@@ -43,10 +43,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6ebf3ac62e948a438e14ded6de20385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mute: {fileID: 0}
+  music: {fileID: 0}
+  musicSlider: {fileID: 0}
+  textSliderMusicVolume: {fileID: 0}
+  backgroundSlider: {fileID: 0}
+  textSliderBackgroundVolume: {fileID: 0}
   sounds:
   - name: Theme
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 01d07bf94380c02488b5f83005ba28a1, type: 3}
     volume: 0.1
     pitch: 1
+    mute: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: Music
+    clip: {fileID: 8300000, guid: 1e4af052b4f10bf419a2e7563d183b8c, type: 3}
+    volume: 0.1
+    pitch: 1
+    mute: 0
     loop: 1
     source: {fileID: 0}

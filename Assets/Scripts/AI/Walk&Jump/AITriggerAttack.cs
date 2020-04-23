@@ -8,6 +8,10 @@ public class AITriggerAttack : StateData
 
     private List<GroundAttack> ListGroundAttacks = new List<GroundAttack>();
 
+    [SerializeField] float attackCounter;
+    [SerializeField] float minTimeBetweenAttacks = .9f;
+    [SerializeField] float maxTimeBetweenAttacks = 3f;
+
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         if (ListGroundAttacks.Count == 0)
@@ -15,6 +19,8 @@ public class AITriggerAttack : StateData
             ListGroundAttacks.Add(PunchAttack);
             ListGroundAttacks.Add(KickAttack);
         }
+
+        attackCounter = Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -54,7 +60,14 @@ public class AITriggerAttack : StateData
 
         if (control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
-            control.l_punch = true;
+            //control.l_punch = true;
+            attackCounter -= Time.deltaTime;
+
+            if (attackCounter <= 0f)
+            {
+                control.l_punch = true;
+                attackCounter = Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+            }
         }
 
         if (control.l_kick && control.l_punch)
@@ -73,7 +86,14 @@ public class AITriggerAttack : StateData
 
         if (control.aiProgress.IsFacingTarget() && !control.animationProgress.IsRunning(typeof(MoveForward)))
         {
-            control.l_kick = true;
+            //control.l_kick = true;
+            attackCounter -= Time.deltaTime;
+
+            if (attackCounter <= 0f)
+            {
+                control.l_kick = true;
+                attackCounter = Random.Range(minTimeBetweenAttacks, maxTimeBetweenAttacks);
+            }
         }
 
         if (control.l_kick && control.l_punch)

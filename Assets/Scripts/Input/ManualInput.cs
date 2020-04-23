@@ -74,23 +74,12 @@ public class ManualInput : MonoBehaviour
         if (VirtualInputManager.Instance.attempt)
         {
             characterControl.attempt = true;
-            ProcDoubleTap(InputKeyType.KEY_ATTEMPT);
+            //ProcDoubleTap(InputKeyType.KEY_ATTEMPT);
         }
         else
         {
             characterControl.attempt = false;
-            RemoveDoubleTap(InputKeyType.KEY_ATTEMPT);
-        }
-
-        if (VirtualInputManager.Instance.grab)
-        {
-            characterControl.grab = true;
-            ProcDoubleTap(InputKeyType.KEY_GRAB);
-        }
-        else
-        {
-            characterControl.grab = false;
-            RemoveDoubleTap(InputKeyType.KEY_GRAB);
+            //RemoveDoubleTap(InputKeyType.KEY_ATTEMPT);
         }
 
         if (VirtualInputManager.Instance.hump)
@@ -126,27 +115,38 @@ public class ManualInput : MonoBehaviour
             RemoveDoubleTap(InputKeyType.KEY_LIGHT_KICK);
         }
 
-        if (VirtualInputManager.Instance.h_punch)
-        {
-            characterControl.h_punch = true;
-            ProcDoubleTap(InputKeyType.KEY_HEAVY_PUNCH);
-        }
-        else
-        {
-            characterControl.h_punch = false;
-            RemoveDoubleTap(InputKeyType.KEY_HEAVY_PUNCH);
-        }
+        //if (VirtualInputManager.Instance.grab)
+        //{
+        //    characterControl.grab = true;
+        //    ProcDoubleTap(InputKeyType.KEY_GRAB);
+        //}
+        //else
+        //{
+        //    characterControl.grab = false;
+        //    RemoveDoubleTap(InputKeyType.KEY_GRAB);
+        //}
 
-        if (VirtualInputManager.Instance.h_kick)
-        {
-            characterControl.h_kick = true;
-            ProcDoubleTap(InputKeyType.KEY_HEAVY_KICK);
-        }
-        else
-        {
-            characterControl.h_kick = false;
-            RemoveDoubleTap(InputKeyType.KEY_HEAVY_KICK);
-        }
+        //if (VirtualInputManager.Instance.h_punch)
+        //{
+        //    characterControl.h_punch = true;
+        //    ProcDoubleTap(InputKeyType.KEY_HEAVY_PUNCH);
+        //}
+        //else
+        //{
+        //    characterControl.h_punch = false;
+        //    RemoveDoubleTap(InputKeyType.KEY_HEAVY_PUNCH);
+        //}
+
+        //if (VirtualInputManager.Instance.h_kick)
+        //{
+        //    characterControl.h_kick = true;
+        //    ProcDoubleTap(InputKeyType.KEY_HEAVY_KICK);
+        //}
+        //else
+        //{
+        //    characterControl.h_kick = false;
+        //    RemoveDoubleTap(InputKeyType.KEY_HEAVY_KICK);
+        //}
 
         //double tap running
         if (doubleTaps.Contains(InputKeyType.KEY_MOVE_RIGHT) ||
@@ -176,7 +176,7 @@ public class ManualInput : MonoBehaviour
         }
     }
 
-    void ProcDoubleTap(InputKeyType keyType)
+    private void ProcDoubleTap(InputKeyType keyType)
     {
         if (!dicDoubleTapTimings.ContainsKey(keyType))
         {
@@ -203,7 +203,7 @@ public class ManualInput : MonoBehaviour
         }
     }
 
-    void RemoveDoubleTap(InputKeyType keyType)
+    private void RemoveDoubleTap(InputKeyType keyType)
     {
         if (doubleTaps.Contains(keyType))
         {

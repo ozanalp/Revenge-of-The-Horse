@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "New State", menuName = "AbilityData/Idle")]
 public class Idle : StateData
@@ -13,6 +11,7 @@ public class Idle : StateData
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.H_Kick], false);
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], false);
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Hump], false);
+        animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Attempt], false);
         animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
 
         characterState.characterControl.animationProgress.blockingObjs.Clear();
@@ -49,7 +48,7 @@ public class Idle : StateData
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Grab], true);
         }
 
-        if(control.moveRight && control.moveLeft)
+        if (control.moveRight && control.moveLeft)
         {
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], false);
         }
@@ -73,6 +72,11 @@ public class Idle : StateData
         else if (control.moveDown)
         {
             animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Move], true);
+        }
+
+        if (control.attempt)
+        {
+            animator.SetBool(HashManager.Instance.dicMainParams[TransitionParameter.Attempt], true);
         }
     }
 

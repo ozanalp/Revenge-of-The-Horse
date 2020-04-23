@@ -25,6 +25,6 @@ MonoBehaviour:
   deathAnimators:
   - {fileID: 9100000, guid: de57cb0765d2eb2428393a6212736adc, type: 2}
   comboStartTime: 0.2
-  comboEndTime: 1
+  comboEndTime: 0.8
   useDeathParticles: 0
   particleType: 0
